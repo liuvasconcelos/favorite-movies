@@ -27,9 +27,9 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setErrorOrEmpty(message: "Por favor, realize uma busca.")
+        setErrorOrEmpty(message: AppStrings.searchMovieMessage)
         
-        buttonLabel.setTitle("Procurar", for: .normal)
+        buttonLabel.setTitle(AppStrings.search, for: .normal)
     }
     
     @IBAction func searchMovies(_ sender: Any) {
@@ -49,11 +49,11 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
     }
     
     fileprivate func showEmptyMessage() {
-        setErrorOrEmpty(message: "Nenhum resultado")
+        setErrorOrEmpty(message: AppStrings.noResultsMessage)
     }
     
-    func show(error: String) {
-        setErrorOrEmpty(message: "Ocorreu um erro. Tente novamente.")
+    func showErrorMessage() {
+        setErrorOrEmpty(message: AppStrings.errorMessage)
     }
     
     fileprivate func setErrorOrEmpty(message: String) {

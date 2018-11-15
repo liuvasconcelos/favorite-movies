@@ -14,5 +14,5 @@ protocol MoviesSearchPresenterContract {
 
 protocol MoviesSearchViewContract {
     func show(movies: [MovieResponse])
-    func show(error: String)
+    func showErrorMessage()
 }

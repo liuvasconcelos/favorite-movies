@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  favorite-movies
+
+  Created by Livia Vasconcelos on 15/11/18.
+  Copyright © 2018 Livia Vasconcelos. All rights reserved.
+*/
+
+"search" = "Search";
+"searchMovieMessage" = "Please type the film that you want to search.";
+"noResultsMessage" = "Your search brought no results.";
+"errorMessage" = "An error occured. Please try again.";
+

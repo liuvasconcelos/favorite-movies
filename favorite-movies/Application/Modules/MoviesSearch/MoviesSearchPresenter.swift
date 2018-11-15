@@ -22,12 +22,12 @@ public class MoviesSearchPresenter: MoviesSearchPresenterContract {
                 if let movies = searchMovies.results {
                     self.view.show(movies: movies)
                 } else {
-                    self.view.show(error: "Erro")
+                    self.view.showErrorMessage()
                 }
             })
             
             callback.onFailed({ (error) in
-                self.view.show(error: "Erro")
+                self.view.showErrorMessage()
             })
         }
     }
