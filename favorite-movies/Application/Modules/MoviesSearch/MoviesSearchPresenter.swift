@@ -8,13 +8,29 @@
 
 public class MoviesSearchPresenter: MoviesSearchPresenterContract {
     
-    init() {
-        
+    private let view: MoviesSearchViewController
+    private let getMovie: GetMovie
+    
+    init(view: MoviesSearchViewController, getMovie: GetMovie) {
+        self.view     = view
+        self.getMovie = getMovie
     }
     
-    func loadSearchedFilms(search: String) -> [String] {
-        let films = ["Film 01", "Film 02"]
-        return films
+    func searchMoviesBy(_ search: String) {
+        getMovie.searchMoviesBy(query: search) { (callback) in
+            callback.onSuccess({ (searchMovies) in
+                if let movies = searchMovies.results {
+                    self.view.show(movies: movies)
+                } else {
+                    self.view.show(error: "Erro")
+                }
+            })
+            
+            callback.onFailed({ (error) in
+                self.view.show(error: "Erro")
+            })
+        }
     }
-    
 }
+
+

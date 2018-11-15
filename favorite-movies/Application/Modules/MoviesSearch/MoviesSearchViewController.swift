@@ -13,10 +13,9 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
     
     @IBOutlet weak var moviesSearchTableView: MoviesSearchTableView!
     
-    var films = [String]()
-    
     lazy var presenter: MoviesSearchPresenterContract = {
-        return MoviesSearchPresenter()
+        return MoviesSearchPresenter(view: self,
+                                     getMovie: InjectionUseCase.provideGetMovie())
     }()
     
     override func viewDidLoad() {
@@ -26,9 +25,24 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        films = presenter.loadSearchedFilms(search: "")
-
-        moviesSearchTableView.set(films: films)
+        presenter.searchMoviesBy("sogra")
     }
     
+    func show(movies: [MovieResponse]) {
+        if movies.isEmpty {
+            self.showEmptyMessage()
+            return
+        }
+        
+        moviesSearchTableView.set(movies: movies)
+        moviesSearchTableView.reloadData()
+    }
+    
+    fileprivate func showEmptyMessage() {
+        print("vazio")
+    }
+    
+    func show(error: String) {
+        print("erro")
+    }
 }

@@ -13,7 +13,7 @@ class MoviesSearchTableView: UITableView, UITableViewDataSource, UITableViewDele
     
     public static let NIB_NAME = "MoviesSearchTableView"
     
-    var films = [String]()
+    var movies = [MovieResponse]()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -27,12 +27,15 @@ class MoviesSearchTableView: UITableView, UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return films.count
+        return movies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MoviesSearchCell.IDENTIFIER, for: indexPath as IndexPath) as! MoviesSearchCell
-        cell.configureView(film: films[indexPath.row])
+        if let title = movies[indexPath.row].title {
+            cell.configureView(film: title)
+        }
+        
         cell.contentView.isUserInteractionEnabled = true
         return cell
     }
@@ -43,14 +46,15 @@ class MoviesSearchTableView: UITableView, UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        self.goToFilmDetails(film: films[indexPath.row])
+
+        self.goToFilmDetails(movie: movies[indexPath.row])
     }
     
-    func set(films: [String]) {
-        self.films = films
+    func set(movies: [MovieResponse]) {
+        self.movies = movies
     }
     
-    func goToFilmDetails(film: String) {
-      print(film)
+    func goToFilmDetails(movie: MovieResponse) {
+      print(movie.title!)
     }
 }

@@ -9,9 +9,10 @@
 import Foundation
 
 protocol MoviesSearchPresenterContract {
-    func loadSearchedFilms(search: String) -> [String]
+    func searchMoviesBy(_ search: String) 
 }
 
 protocol MoviesSearchViewContract {
-    
+    func show(movies: [MovieResponse])
+    func show(error: String)
 }
