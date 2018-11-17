@@ -32,5 +32,3 @@ public class MoviesSearchPresenter: MoviesSearchPresenterContract {
         }
     }
 }
-
-

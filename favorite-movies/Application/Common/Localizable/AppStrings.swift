@@ -9,10 +9,12 @@
 import Foundation
 
 public class AppStrings {
-    public static let search             = localized("search")
-    public static let searchMovieMessage = localized("searchMovieMessage")
-    public static let noResultsMessage   = localized("noResultsMessage")
-    public static let errorMessage       = localized("errorMessage")
+    public static let search               = localized("search")
+    public static let searchMovieMessage   = localized("searchMovieMessage")
+    public static let noResultsMessage     = localized("noResultsMessage")
+    public static let errorMessage         = localized("errorMessage")
+    public static let lookForMoreFavorites = localized("lookForMoreFavorites")
+    public static let noFavoriteMovies     = localized("noFavoriteMovies")
     
     public static func localized(_ value: String) -> String {
         return NSLocalizedString(value, tableName: nil, bundle: Bundle.main, value: "", comment: "")

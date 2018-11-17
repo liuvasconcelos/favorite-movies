@@ -6,8 +6,14 @@
   Copyright © 2018 Livia Vasconcelos. All rights reserved.
 */
 
-"search" = "Search";
+//Favorite Movies screen
+"lookForMoreFavorites" = "Favorite other movies";
+"noFavoriteMovies"     = "You have no favorite movies.";
+
+//Movies Search screen
+"search"             = "Search";
 "searchMovieMessage" = "Please type the film that you want to search.";
-"noResultsMessage" = "Your search brought no results.";
-"errorMessage" = "An error occured. Please try again.";
+"noResultsMessage"   = "Your search brought no results.";
+"errorMessage"       = "An error occured. Please try again.";
+
 
