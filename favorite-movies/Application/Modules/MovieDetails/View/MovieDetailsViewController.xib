@@ -29,20 +29,35 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FCB-hI-qC1">
+                        <rect key="frame" x="120" y="561" width="134" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="134" id="tIz-xz-uuV"/>
+                        </constraints>
+                        <state key="normal" title="Ver Trailer"/>
+                        <connections>
+                            <action selector="showTrailer:" destination="UlL-lv-Pfd" eventType="touchUpInside" id="lNL-t7-rBK"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="Dk3-ba-PQV" firstAttribute="leading" secondItem="4L5-MN-SWL" secondAttribute="leading" constant="16" id="4QD-JF-210"/>
                     <constraint firstItem="4L5-MN-SWL" firstAttribute="trailing" secondItem="Dk3-ba-PQV" secondAttribute="trailing" constant="23" id="8s7-7C-YlA"/>
+                    <constraint firstItem="FCB-hI-qC1" firstAttribute="top" secondItem="9TK-GW-gWJ" secondAttribute="bottom" constant="153" id="Ej8-oL-9KK"/>
+                    <constraint firstItem="4L5-MN-SWL" firstAttribute="trailing" secondItem="FCB-hI-qC1" secondAttribute="trailing" constant="121" id="Gxv-ZA-9Ke"/>
                     <constraint firstItem="Dk3-ba-PQV" firstAttribute="top" secondItem="4L5-MN-SWL" secondAttribute="top" constant="62" id="RMm-4u-4Ns"/>
                     <constraint firstItem="9TK-GW-gWJ" firstAttribute="leading" secondItem="4L5-MN-SWL" secondAttribute="leading" constant="16" id="aoJ-uZ-GpX"/>
                     <constraint firstItem="9TK-GW-gWJ" firstAttribute="top" secondItem="Dk3-ba-PQV" secondAttribute="bottom" constant="18.5" id="bgp-gy-dO4"/>
                     <constraint firstItem="4L5-MN-SWL" firstAttribute="bottom" secondItem="9TK-GW-gWJ" secondAttribute="bottom" constant="259" id="cTK-AM-7Hv"/>
                     <constraint firstItem="4L5-MN-SWL" firstAttribute="trailing" secondItem="9TK-GW-gWJ" secondAttribute="trailing" constant="16" id="dT1-dT-aOi"/>
+                    <constraint firstItem="FCB-hI-qC1" firstAttribute="leading" secondItem="4L5-MN-SWL" secondAttribute="leading" constant="120" id="jXN-n3-k1Y"/>
+                    <constraint firstItem="4L5-MN-SWL" firstAttribute="bottom" secondItem="FCB-hI-qC1" secondAttribute="bottom" constant="76" id="keR-nO-HgH"/>
                 </constraints>
                 <viewLayoutGuide key="safeArea" id="4L5-MN-SWL"/>
             </view>
             <connections>
+                <outlet property="seeTrailerButton" destination="FCB-hI-qC1" id="2be-Mc-qUk"/>
                 <outlet property="sinopseLabel" destination="9TK-GW-gWJ" id="c45-wL-Qb3"/>
                 <outlet property="titleLabel" destination="Dk3-ba-PQV" id="B1u-zt-CCW"/>
             </connections>

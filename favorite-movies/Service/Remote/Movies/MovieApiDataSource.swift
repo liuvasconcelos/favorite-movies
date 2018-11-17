@@ -11,5 +11,6 @@ import Foundation
 protocol MovieApiDataSource {
     
     func searchMoviesBy(query: String, _ loadCallback: @escaping (BaseCallback<SearchMoviesResponse>) -> Void)
+    func loadTrailerFromMovieWith(id: Int, _ loadCallback: @escaping (BaseCallback<BaseTrailer>) -> Void)
     
 }

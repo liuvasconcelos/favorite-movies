@@ -9,7 +9,6 @@
 import Foundation
 
 class MovieRemoteDataSourceImpl: MovieRemoteDataSource {
-    
     private static var INSTANCE: MovieRemoteDataSourceImpl?
     
     private let apiDataSource: MovieApiDataSource
@@ -34,5 +33,8 @@ class MovieRemoteDataSourceImpl: MovieRemoteDataSource {
         apiDataSource.searchMoviesBy(query: query, loadCallback)
     }
     
+    func loadTrailerFromMovieWith(id: Int, _ loadCallback: @escaping (BaseCallback<BaseTrailer>) -> Void) {
+        apiDataSource.loadTrailerFromMovieWith(id: id, loadCallback)
+    }
 }
 

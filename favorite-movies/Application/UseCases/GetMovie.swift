@@ -20,4 +20,8 @@ class GetMovie {
         remoteDataSource.searchMoviesBy(query: query, loadCallback)
     }
     
+    func loadTrailerFromMovieWith(id : Int, _ loadCallback: @escaping (BaseCallback<BaseTrailer>) -> Void) {
+        remoteDataSource.loadTrailerFromMovieWith(id: id, loadCallback)
+    }
+    
 }

@@ -8,13 +8,20 @@
 
 import UIKit
 
-class MovieDetailsViewController: UIViewController {
+class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
+  
     public static let NIB_NAME = "MovieDetailsViewController"
     
     var movieChoosen: MovieResponse?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var sinopseLabel: UILabel!
+    @IBOutlet weak var seeTrailerButton: UIButton!
+    
+    lazy var presenter: MovieDetailsPresenterContract = {
+        return MovieDetailsPresenter(view: self,
+                                     getMovie: InjectionUseCase.provideGetMovie())
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +30,7 @@ class MovieDetailsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        seeTrailerButton.setTitle("Ver trailer", for: .normal)
         
         if let movie = movieChoosen {
             titleLabel.text   = movie.title
@@ -51,6 +59,44 @@ class MovieDetailsViewController: UIViewController {
     
     func set(movie: MovieResponse) {
         self.movieChoosen = movie
+    }
+    
+    @IBAction func showTrailer(_ sender: Any) {
+        if let movie = movieChoosen {
+            presenter.loadTrailerFromMovieWith(id: movie.id!)
+
+        }
+    }
+    
+    func show(trailers: [TrailerResponse]) {
+        if trailers.isEmpty {
+            self.alertThatItHasNoTrailer()
+            return
+        }
+        
+        print("Trailer encontrado")
+    }
+    
+    func showErrorMessage() {
+        let alertController = UIAlertController(title: "", message: AppStrings.errorMessage, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: AppStrings.back, style: UIAlertAction.Style.cancel) {
+            UIAlertAction in
+        }
+
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func alertThatItHasNoTrailer() {
+        let alertController = UIAlertController(title: "", message: AppStrings.noTrailerMessage, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: AppStrings.back, style: UIAlertAction.Style.cancel) {
+            UIAlertAction in
+        }
+        
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 

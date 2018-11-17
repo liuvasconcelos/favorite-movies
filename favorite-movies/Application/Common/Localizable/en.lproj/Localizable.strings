@@ -19,4 +19,7 @@
 "noResultsMessage"   = "Your search brought no results.";
 "errorMessage"       = "An error occured. Please try again.";
 
+//Movie Details screen
+"noTrailerMessage" = "This movie has no trailer.";
+
 
