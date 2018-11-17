@@ -16,3 +16,7 @@ protocol FavoriteMoviesViewContract {
     func show(favoriteMovies: [MovieResponse])
     func showErrorMessage()
 }
+
+protocol FavoriteMoviesCellContract: class {
+    func didCellPressed(movie: MovieResponse)
+}

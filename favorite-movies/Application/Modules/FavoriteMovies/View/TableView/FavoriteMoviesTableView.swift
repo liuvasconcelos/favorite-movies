@@ -12,6 +12,7 @@ import Foundation
 class FavoriteMoviesTableView: UITableView, UITableViewDataSource, UITableViewDelegate {
     
     public static let NIB_NAME = "FavoriteMoviesTableView"
+    public weak var contract: FavoriteMoviesCellContract?
     
     var movies = [MovieResponse]()
     
@@ -55,6 +56,6 @@ class FavoriteMoviesTableView: UITableView, UITableViewDataSource, UITableViewDe
     }
     
     func goToFilmDetails(movie: MovieResponse) {
-        print(movie.title!)
+        self.contract?.didCellPressed(movie: movie)
     }
 }

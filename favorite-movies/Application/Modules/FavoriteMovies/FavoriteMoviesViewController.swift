@@ -27,7 +27,9 @@ class FavoriteMoviesViewController: UIViewController, FavoriteMoviesViewContract
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        errorOrEmptyMessage.isHidden = true
+        errorOrEmptyMessage.isHidden   = true
+        favoriteMoviesTableView.contract = self
+        
         searchForMovieButton.setTitle(AppStrings.lookForMoreFavorites, for: .normal)
         
         presenter.loadAllFavoriteMovies()
@@ -63,4 +65,14 @@ class FavoriteMoviesViewController: UIViewController, FavoriteMoviesViewContract
         errorOrEmptyMessage.isHidden     = false
         errorOrEmptyMessage.text         = message
     }
+}
+
+extension FavoriteMoviesViewController: FavoriteMoviesCellContract {
+    
+    func didCellPressed(movie: MovieResponse) {
+        let controller: MovieDetailsViewController = ViewUtils.loadNibNamed(MovieDetailsViewController.NIB_NAME, owner: self)!
+        controller.set(movie: movie)
+        self.present(controller, animated: true, completion: nil)
+    }
+    
 }
