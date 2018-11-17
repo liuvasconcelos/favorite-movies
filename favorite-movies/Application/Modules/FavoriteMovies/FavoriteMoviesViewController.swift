@@ -46,7 +46,8 @@ class FavoriteMoviesViewController: UIViewController, FavoriteMoviesViewContract
     }
     
     @IBAction func favoriteOtherMovies(_ sender: Any) {
-        print("favoritar")
+        let controller: MoviesSearchViewController = ViewUtils.loadNibNamed(MoviesSearchViewController.NIB_NAME, owner: self)!
+        self.show(controller, sender: sender)
     }
     
     fileprivate func showEmptyMessage() {

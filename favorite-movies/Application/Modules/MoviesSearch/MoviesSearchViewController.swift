@@ -23,6 +23,7 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -30,6 +31,21 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
         setErrorOrEmpty(message: AppStrings.searchMovieMessage)
         
         buttonLabel.setTitle(AppStrings.search, for: .normal)
+    }
+    
+    func setNavigationBar() {
+        let screenSize: CGRect = UIScreen.main.bounds
+        let navBar             = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 50))
+        let navItem            = UINavigationItem(title: "")
+        let back               = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: nil, action: #selector(done))
+        
+        navItem.leftBarButtonItem = back
+        navBar.setItems([navItem], animated: false)
+        self.view.addSubview(navBar)
+    }
+    
+    @objc func done() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func searchMovies(_ sender: Any) {

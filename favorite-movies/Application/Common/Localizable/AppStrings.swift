@@ -9,6 +9,7 @@
 import Foundation
 
 public class AppStrings {
+    public static let back                 = localized("back")
     public static let search               = localized("search")
     public static let searchMovieMessage   = localized("searchMovieMessage")
     public static let noResultsMessage     = localized("noResultsMessage")
