@@ -66,7 +66,7 @@ class MovieApiDataSourceImpl: MovieApiDataSource {
     }
     
     fileprivate func buildUrlForSearchForTrailer(id: Int) -> String {
-        let url: String =  "https://api.themoviedb.org/3/movie/" + String(id) + "/videos?api_key=9ce37a42a90b830bd797fce0e235ca11&language=en-US"
+        let url: String =  "https://api.themoviedb.org/3/movie/" + String(id) + "/videos?api_key=9ce37a42a90b830bd797fce0e235ca11"
         return url
     }
     

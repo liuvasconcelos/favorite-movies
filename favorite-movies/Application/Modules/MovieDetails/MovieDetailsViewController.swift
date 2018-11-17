@@ -16,7 +16,10 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var sinopseLabel: UILabel!
-    @IBOutlet weak var seeTrailerButton: UIButton!
+    @IBOutlet weak var emptyOrErrorMessage: UILabel!
+    
+
+    @IBOutlet weak var trailerContent: UIWebView!
     
     lazy var presenter: MovieDetailsPresenterContract = {
         return MovieDetailsPresenter(view: self,
@@ -30,7 +33,8 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        seeTrailerButton.setTitle("Ver trailer", for: .normal)
+        presenter.loadTrailerFromMovieWith(id: movieChoosen!.id!)
+        emptyOrErrorMessage.isHidden = true
         
         if let movie = movieChoosen {
             titleLabel.text   = movie.title
@@ -61,42 +65,29 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
         self.movieChoosen = movie
     }
     
-    @IBAction func showTrailer(_ sender: Any) {
-        if let movie = movieChoosen {
-            presenter.loadTrailerFromMovieWith(id: movie.id!)
-
-        }
-    }
-    
     func show(trailers: [TrailerResponse]) {
         if trailers.isEmpty {
-            self.alertThatItHasNoTrailer()
+            emptyOrErrorMessage.isHidden = false
+            emptyOrErrorMessage.text     = AppStrings.noTrailerMessage
             return
         }
         
-        print("Trailer encontrado")
+        trailers.forEach { (trailer) in
+            if trailer.site == "YouTube" {
+                let url = URL(string: "https://www.youtube.com/embed/" + trailer.key!)
+                trailerContent.loadRequest(URLRequest(url: url!))
+                return
+            }
+        }
+        
+        
     }
     
     func showErrorMessage() {
-        let alertController = UIAlertController(title: "", message: AppStrings.errorMessage, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: AppStrings.back, style: UIAlertAction.Style.cancel) {
-            UIAlertAction in
-        }
-
-        alertController.addAction(cancelAction)
+        emptyOrErrorMessage.isHidden = false
+        emptyOrErrorMessage.text     = AppStrings.errorMessage
         
-        self.present(alertController, animated: true, completion: nil)
     }
     
-    func alertThatItHasNoTrailer() {
-        let alertController = UIAlertController(title: "", message: AppStrings.noTrailerMessage, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: AppStrings.back, style: UIAlertAction.Style.cancel) {
-            UIAlertAction in
-        }
-        
-        alertController.addAction(cancelAction)
-        
-        self.present(alertController, animated: true, completion: nil)
-    }
 }
 
