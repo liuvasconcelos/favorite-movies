@@ -16,3 +16,7 @@ protocol MoviesSearchViewContract {
     func show(movies: [MovieResponse])
     func showErrorMessage()
 }
+
+protocol MoviesSearchCellContract: class {
+    func didCellPressed(movie: MovieResponse)
+}

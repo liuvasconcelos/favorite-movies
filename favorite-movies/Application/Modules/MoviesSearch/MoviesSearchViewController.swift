@@ -31,6 +31,8 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
         setErrorOrEmpty(message: AppStrings.searchMovieMessage)
         
         buttonLabel.setTitle(AppStrings.search, for: .normal)
+        
+        moviesSearchTableView.contract = self
     }
     
     func setNavigationBar() {
@@ -77,4 +79,14 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
         errorOrEmptyMessage.isHidden   = false
         errorOrEmptyMessage.text       = message
     }
+}
+
+extension MoviesSearchViewController: MoviesSearchCellContract {
+
+    func didCellPressed(movie: MovieResponse) {
+        let controller: MovieDetailsViewController = ViewUtils.loadNibNamed(MovieDetailsViewController.NIB_NAME, owner: self)!
+        controller.set(movie: movie)
+        self.present(controller, animated: true, completion: nil)
+    }
+
 }

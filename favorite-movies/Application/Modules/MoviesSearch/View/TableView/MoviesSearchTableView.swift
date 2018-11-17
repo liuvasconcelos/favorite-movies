@@ -12,6 +12,7 @@ import Foundation
 class MoviesSearchTableView: UITableView, UITableViewDataSource, UITableViewDelegate {
     
     public static let NIB_NAME = "MoviesSearchTableView"
+    public weak var contract: MoviesSearchCellContract?
     
     var movies = [MovieResponse]()
     
@@ -55,6 +56,6 @@ class MoviesSearchTableView: UITableView, UITableViewDataSource, UITableViewDele
     }
     
     func goToFilmDetails(movie: MovieResponse) {
-      print(movie.title!)
+        self.contract?.didCellPressed(movie: movie)
     }
 }
