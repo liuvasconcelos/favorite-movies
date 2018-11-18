@@ -36,18 +36,7 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
         presenter.loadTrailerFromMovieWith(id: Int(movieChoosen?.id ?? "0") ?? 0)
         emptyOrErrorMessage.isHidden = true
         
-        if let movie = movieChoosen {
-            titleLabel.text   = movie.title
-            if movie.overview.isEmpty {
-                sinopseLabel.text = AppStrings.noOverview
-                return
-            }
-            sinopseLabel.text = movie.overview
-        } else {
-            titleLabel.text   = ""
-            sinopseLabel.text = ""
-        }
-        
+        showMovieDetails()
     }
     
     func setNavigationBar() {
@@ -61,6 +50,27 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
         self.view.addSubview(navBar)
     }
     
+    fileprivate func showMovieDetails() {
+        self.titleLabel.alpha   = 0.0
+        self.sinopseLabel.alpha = 0.0
+        
+        UIView.animate(withDuration: 3.0) {
+            if let movie = self.movieChoosen {
+                self.titleLabel.text = movie.title
+                if movie.overview.isEmpty {
+                    self.sinopseLabel.text = AppStrings.noOverview
+                    return
+                }
+                self.sinopseLabel.text = movie.overview
+            } else {
+                self.titleLabel.text   = ""
+                self.sinopseLabel.text = ""
+            }
+            
+            self.titleLabel.alpha   = 1.0
+            self.sinopseLabel.alpha = 1.0
+        }
+    }
     @objc func done() {
         self.dismiss(animated: true, completion: nil)
     }
@@ -71,16 +81,29 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
     
     func show(trailers: [TrailerResponse]) {
         if trailers.isEmpty {
-            emptyOrErrorMessage.isHidden = false
-            emptyOrErrorMessage.text     = AppStrings.noTrailerMessage
+            emptyOrErrorMessage.alpha = 0.0
+            UIView.animate(withDuration: 3.0) {
+                self.emptyOrErrorMessage.isHidden = false
+                self.emptyOrErrorMessage.text     = AppStrings.noTrailerMessage
+                self.emptyOrErrorMessage.alpha    = 1.0
+            }
             return
         }
         
         trailers.forEach { (trailer) in
+            self.trailerContent.alpha = 0.0
             if trailer.site == "YouTube" {
+                UIView.animate(withDuration: 3.0, animations: {
+                    let url = URL(string: "https://www.youtube.com/embed/" + trailer.key!)
+                    self.trailerContent.loadRequest(URLRequest(url: url!))
+                    self.trailerContent.alpha = 1.0
+                    return
+                })
+                
                 let url = URL(string: "https://www.youtube.com/embed/" + trailer.key!)
-                trailerContent.loadRequest(URLRequest(url: url!))
+                self.trailerContent.loadRequest(URLRequest(url: url!))
                 return
+                
             }
         }
     }
