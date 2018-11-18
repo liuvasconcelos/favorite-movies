@@ -17,15 +17,18 @@ public class MovieDetailsPresenter: MovieDetailsPresenterContract {
     }
     
     func loadTrailerFromMovieWith(id: Int) {
+        view.showLoader()
         getMovie.loadTrailerFromMovieWith(id: id) { (callback) in
             callback.onSuccess({ (trailer) in
                 if let results = trailer.results {
                     self.view.show(trailers: results)
+                    self.view.hideLoader()
                 }
             })
             
             callback.onFailed({ (error) in
                 self.view.showErrorMessage()
+                self.view.hideLoader()
             })
         }
     }

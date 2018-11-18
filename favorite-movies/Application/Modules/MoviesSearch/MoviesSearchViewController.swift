@@ -18,6 +18,8 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
     
     @IBOutlet weak var topRatedLabel: UILabel!
     
+    var loader: UIActivityIndicatorView = UIActivityIndicatorView()
+    
     var movies: [Movie]       = []
     var topRated: Bool        = true
     var currentSearch: String = ""
@@ -108,6 +110,19 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
         errorOrEmptyMessage.isHidden   = false
         errorOrEmptyMessage.text       = message
         topRatedLabel.isHidden         = true
+    }
+    
+    func showLoader() {
+        loader.center           = self.moviesSearchTableView.center
+        loader.hidesWhenStopped = true
+        loader.style            = UIActivityIndicatorView.Style.gray
+        
+        view.addSubview(loader)
+        loader.startAnimating()
+    }
+    
+    func hideLoader() {
+        loader.stopAnimating()
     }
 }
 

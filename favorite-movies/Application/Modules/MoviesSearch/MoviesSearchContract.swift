@@ -17,6 +17,8 @@ protocol MoviesSearchPresenterContract {
 protocol MoviesSearchViewContract {
     func show(movies: [Movie], topRated: Bool)
     func showErrorMessage()
+    func showLoader()
+    func hideLoader()
 }
 
 protocol MoviesSearchCellContract: class {

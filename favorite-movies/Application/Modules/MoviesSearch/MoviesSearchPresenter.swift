@@ -19,6 +19,7 @@ public class MoviesSearchPresenter: MoviesSearchPresenterContract {
     }
     
     func searchMoviesBy(_ search: String, currentPage: Int) {
+        view.showLoader()
         getMovie.searchMoviesBy(query: search, page: currentPage) { (callback) in
             callback.onSuccess({ (searchMovies) in
                 self.checkList(result: searchMovies, topRated: false)
@@ -26,6 +27,7 @@ public class MoviesSearchPresenter: MoviesSearchPresenterContract {
             
             callback.onFailed({ (error) in
                 self.view.showErrorMessage()
+                self.view.hideLoader()
             })
         }
     }
@@ -35,6 +37,7 @@ public class MoviesSearchPresenter: MoviesSearchPresenterContract {
     }
     
     func loadTopRated(page: Int) {
+        self.view.showLoader()
         getMovie.loadTopRated (page: page) { (callback) in
             callback.onSuccess({ (loadTopRated) in
                self.checkList(result: loadTopRated, topRated: true)
@@ -42,6 +45,7 @@ public class MoviesSearchPresenter: MoviesSearchPresenterContract {
             
             callback.onFailed({ (error) in
                 self.view.showErrorMessage()
+                self.view.hideLoader()
             })
         }
     }
@@ -57,5 +61,7 @@ public class MoviesSearchPresenter: MoviesSearchPresenterContract {
         } else {
             self.view.showErrorMessage()
         }
+        
+        self.view.hideLoader()
     }
 }

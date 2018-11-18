@@ -19,6 +19,8 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
     @IBOutlet weak var emptyOrErrorMessage: UILabel!
     @IBOutlet weak var trailerContent:      UIWebView!
     
+    var loader: UIActivityIndicatorView = UIActivityIndicatorView()
+    
     lazy var presenter: MovieDetailsPresenterContract = {
         return MovieDetailsPresenter(view: self,
                                      getMovie: InjectionUseCase.provideGetMovie())
@@ -88,5 +90,17 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
         emptyOrErrorMessage.text     = AppStrings.errorMessage
     }
     
+    func showLoader() {
+        loader.center           = self.trailerContent.center
+        loader.hidesWhenStopped = true
+        loader.style            = UIActivityIndicatorView.Style.gray
+        
+        view.addSubview(loader)
+        loader.startAnimating()
+    }
+    
+    func hideLoader() {
+        loader.stopAnimating()
+    }
 }
 

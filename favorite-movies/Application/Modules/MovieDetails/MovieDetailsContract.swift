@@ -15,4 +15,6 @@ protocol MovieDetailsPresenterContract {
 protocol MovieDetailsViewContract {
     func show(trailers: [TrailerResponse])
     func showErrorMessage()
+    func showLoader()
+    func hideLoader()
 }
