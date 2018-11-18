@@ -46,6 +46,15 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vx2-Kc-okF">
+                        <rect key="frame" x="16" y="88" width="344" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="344" id="Dbd-2b-u59"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
@@ -54,6 +63,7 @@
                     <constraint firstItem="WSb-2T-ecy" firstAttribute="leading" secondItem="6oa-Di-KH4" secondAttribute="leading" constant="16" id="E6b-oh-mGa"/>
                     <constraint firstItem="WSb-2T-ecy" firstAttribute="top" secondItem="6oa-Di-KH4" secondAttribute="top" constant="30" id="Elh-Th-Ikf"/>
                     <constraint firstItem="dR1-OY-Df4" firstAttribute="top" secondItem="Pmg-I6-VNZ" secondAttribute="bottom" constant="25" id="Gg4-Wz-0zC"/>
+                    <constraint firstItem="Vx2-Kc-okF" firstAttribute="top" secondItem="WSb-2T-ecy" secondAttribute="bottom" constant="8" id="Hql-6K-oP3"/>
                     <constraint firstItem="WSb-2T-ecy" firstAttribute="leading" secondItem="SS1-yv-Muv" secondAttribute="leadingMargin" id="MaN-iC-Xgn"/>
                     <constraint firstItem="dR1-OY-Df4" firstAttribute="top" secondItem="WSb-2T-ecy" secondAttribute="bottom" constant="25" id="QV5-Zb-6ZV"/>
                     <constraint firstItem="dR1-OY-Df4" firstAttribute="trailing" secondItem="6oa-Di-KH4" secondAttribute="trailing" id="REu-IG-cDk"/>
@@ -61,8 +71,10 @@
                     <constraint firstItem="6oa-Di-KH4" firstAttribute="trailing" secondItem="Pmg-I6-VNZ" secondAttribute="trailing" constant="15" id="ZZv-i8-SFu"/>
                     <constraint firstItem="dR1-OY-Df4" firstAttribute="top" secondItem="WSb-2T-ecy" secondAttribute="bottom" constant="25" id="k1p-Zy-RhH"/>
                     <constraint firstItem="hnx-cj-hXB" firstAttribute="top" secondItem="WSb-2T-ecy" secondAttribute="bottom" constant="55" id="k8V-6p-mZp"/>
+                    <constraint firstItem="Vx2-Kc-okF" firstAttribute="leading" secondItem="6oa-Di-KH4" secondAttribute="leading" constant="16" id="mLO-Nm-gIb"/>
                     <constraint firstItem="6oa-Di-KH4" firstAttribute="bottom" secondItem="dR1-OY-Df4" secondAttribute="bottom" constant="20" id="oOn-yY-wCk"/>
                     <constraint firstItem="Pmg-I6-VNZ" firstAttribute="leading" secondItem="WSb-2T-ecy" secondAttribute="trailing" constant="8" symbolic="YES" id="oWA-Ex-Gaw"/>
+                    <constraint firstItem="6oa-Di-KH4" firstAttribute="trailing" secondItem="Vx2-Kc-okF" secondAttribute="trailing" constant="15" id="s8Q-Wg-2NI"/>
                     <constraint firstItem="dR1-OY-Df4" firstAttribute="leading" secondItem="6oa-Di-KH4" secondAttribute="leading" id="sNA-Uf-gvZ"/>
                     <constraint firstItem="WSb-2T-ecy" firstAttribute="top" secondItem="Pmg-I6-VNZ" secondAttribute="top" id="vL1-M1-C8m"/>
                     <constraint firstItem="Pmg-I6-VNZ" firstAttribute="leading" secondItem="WSb-2T-ecy" secondAttribute="trailing" constant="8" id="zby-dT-r76"/>
@@ -74,6 +86,7 @@
                 <outlet property="errorOrEmptyMessage" destination="hnx-cj-hXB" id="ct5-6x-fiT"/>
                 <outlet property="moviesSearchTableView" destination="dR1-OY-Df4" id="jAq-71-z7I"/>
                 <outlet property="searchTextField" destination="WSb-2T-ecy" id="4dO-tY-yJB"/>
+                <outlet property="topRatedLabel" destination="Vx2-Kc-okF" id="rjv-EU-dtU"/>
             </connections>
             <point key="canvasLocation" x="-287.19999999999999" y="80.50974512743629"/>
         </viewController>

@@ -29,5 +29,9 @@ class GetMovie {
     func loadAllFavoriteMovies() -> [Movie]{
         return localDataSource.allMovies()
     }
+    
+    func loadTopRated(page: Int, _ loadCallback: @escaping (BaseCallback<SearchMoviesResponse>) -> Void) {
+        remoteDataSource.loadTopRated(page: page, loadCallback)
+    }
 
 }

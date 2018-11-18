@@ -11,7 +11,6 @@ import Alamofire
 import AlamofireObjectMapper
 
 class MovieApiDataSourceImpl: MovieApiDataSource {
-
     private static var INSTANCE: MovieApiDataSourceImpl?
     
     public static func getInstance() -> MovieApiDataSourceImpl {
@@ -68,6 +67,24 @@ class MovieApiDataSourceImpl: MovieApiDataSource {
     fileprivate func buildUrlForSearchForTrailer(id: Int) -> String {
         let url: String =  "https://api.themoviedb.org/3/movie/" + String(id) + "/videos?api_key=9ce37a42a90b830bd797fce0e235ca11"
         return url
+    }
+    
+    func loadTopRated(page: Int, _ loadCallback: @escaping (BaseCallback<SearchMoviesResponse>) -> Void) {
+        let url = buildUrlForLoadTopRated(page: page)
+        Alamofire.request(url, method: .get).responseObject { (response: DataResponse<SearchMoviesResponse>) in
+            switch(response.result) {
+            case .success(let response):
+                loadCallback(BaseCallback.success(response))
+                break
+            case .failure(let error):
+                loadCallback(BaseCallback.failed(error: error))
+                break
+            }
+        }
+    }
+    
+    fileprivate func buildUrlForLoadTopRated(page: Int = 1) -> String {
+        return "https://api.themoviedb.org/3/movie/top_rated?api_key=9ce37a42a90b830bd797fce0e235ca11&page=\(String(page))"
     }
     
 }

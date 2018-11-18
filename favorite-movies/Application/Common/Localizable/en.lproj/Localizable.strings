@@ -18,8 +18,10 @@
 "searchMovieMessage" = "Please type the film that you want to search.";
 "noResultsMessage"   = "Your search brought no results.";
 "errorMessage"       = "An error occured. Please try again.";
+"topRated"           = "Top Rated Movies";
 
 //Movie Details screen
 "noTrailerMessage" = "This movie has no trailer.";
+"noOverview"       = "This moview has no overview";
 
 

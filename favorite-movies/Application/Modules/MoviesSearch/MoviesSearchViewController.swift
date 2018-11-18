@@ -16,6 +16,9 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
     @IBOutlet weak var buttonLabel:           UIButton!
     @IBOutlet weak var errorOrEmptyMessage:   UILabel!
     
+    @IBOutlet weak var topRatedLabel: UILabel!
+    var movies: [Movie] = []
+    
     lazy var presenter: MoviesSearchPresenterContract = {
         return MoviesSearchPresenter(view: self,
                                      getMovie: InjectionUseCase.provideGetMovie(),
@@ -29,11 +32,20 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setErrorOrEmpty(message: AppStrings.searchMovieMessage)
         
         buttonLabel.setTitle(AppStrings.search, for: .normal)
-        
         moviesSearchTableView.contract = self
+        topRatedLabel.text = AppStrings.topRated
+        
+        if movies.isEmpty {
+            presenter.loadTopRated(page: 1)
+        } else {
+            topRatedLabel.isHidden         = true
+            errorOrEmptyMessage.isHidden   = true
+            moviesSearchTableView.isHidden = false
+            moviesSearchTableView.set(movies: self.movies)
+            moviesSearchTableView.reloadData()
+        }
     }
     
     func setNavigationBar() {
@@ -56,15 +68,17 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
         presenter.searchMoviesBy(search)
     }
     
-    func show(movies: [Movie]) {
+    func show(movies: [Movie], topRated: Bool) {
+        self.movies = movies
         if movies.isEmpty {
             self.showEmptyMessage()
             return
         }
         moviesSearchTableView.isHidden = false
         errorOrEmptyMessage.isHidden   = true
-        
-        moviesSearchTableView.set(movies: movies)
+        topRatedLabel.isHidden         = !topRated
+
+        moviesSearchTableView.set(movies: self.movies)
         moviesSearchTableView.reloadData()
     }
     
@@ -80,6 +94,7 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
         moviesSearchTableView.isHidden = true
         errorOrEmptyMessage.isHidden   = false
         errorOrEmptyMessage.text       = message
+        topRatedLabel.isHidden         = true
     }
 }
 

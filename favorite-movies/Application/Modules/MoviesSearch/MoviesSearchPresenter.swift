@@ -7,7 +7,7 @@
 //
 
 public class MoviesSearchPresenter: MoviesSearchPresenterContract {
-    
+
     private let view:      MoviesSearchViewController
     private let getMovie:  GetMovie
     private let saveMovie: SaveMovie
@@ -21,16 +21,7 @@ public class MoviesSearchPresenter: MoviesSearchPresenterContract {
     func searchMoviesBy(_ search: String) {
         getMovie.searchMoviesBy(query: search) { (callback) in
             callback.onSuccess({ (searchMovies) in
-                var listOfMovies: [Movie] = []
-                if let movies = searchMovies.results {
-                    movies.forEach({ (movieResponse) in
-                        let movie = MovieConverter.responseToEntity(movieResponse)
-                        listOfMovies.append(movie)
-                    })
-                    self.view.show(movies: listOfMovies)
-                } else {
-                    self.view.showErrorMessage()
-                }
+                self.checkList(result: searchMovies, topRated: false)
             })
             
             callback.onFailed({ (error) in
@@ -41,5 +32,30 @@ public class MoviesSearchPresenter: MoviesSearchPresenterContract {
     
     func favorite(movie: Movie) {
         saveMovie.saveMovieAsFavorite(movie: movie)
+    }
+    
+    func loadTopRated(page: Int) {
+        getMovie.loadTopRated (page: page) { (callback) in
+            callback.onSuccess({ (loadTopRated) in
+               self.checkList(result: loadTopRated, topRated: true)
+            })
+            
+            callback.onFailed({ (error) in
+                self.view.showErrorMessage()
+            })
+        }
+    }
+    
+    fileprivate func checkList(result: SearchMoviesResponse, topRated: Bool){
+        var listOfMovies: [Movie] = []
+        if let movies = result.results {
+            movies.forEach({ (movieResponse) in
+                let movie = MovieConverter.responseToEntity(movieResponse)
+                listOfMovies.append(movie)
+            })
+            self.view.show(movies: listOfMovies, topRated: topRated)
+        } else {
+            self.view.showErrorMessage()
+        }
     }
 }

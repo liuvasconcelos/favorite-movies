@@ -11,10 +11,11 @@ import Foundation
 protocol MoviesSearchPresenterContract {
     func searchMoviesBy(_ search: String)
     func favorite(movie: Movie)
+    func loadTopRated(page: Int)
 }
 
 protocol MoviesSearchViewContract {
-    func show(movies: [Movie])
+    func show(movies: [Movie], topRated: Bool)
     func showErrorMessage()
 }
 

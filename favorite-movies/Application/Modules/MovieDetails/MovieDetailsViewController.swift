@@ -36,6 +36,10 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
         
         if let movie = movieChoosen {
             titleLabel.text   = movie.title
+            if movie.overview.isEmpty {
+                sinopseLabel.text = AppStrings.noOverview
+                return
+            }
             sinopseLabel.text = movie.overview
         } else {
             titleLabel.text   = ""

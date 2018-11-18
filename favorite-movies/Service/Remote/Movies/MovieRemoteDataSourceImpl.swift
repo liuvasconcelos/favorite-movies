@@ -36,5 +36,9 @@ class MovieRemoteDataSourceImpl: MovieRemoteDataSource {
     func loadTrailerFromMovieWith(id: Int, _ loadCallback: @escaping (BaseCallback<BaseTrailer>) -> Void) {
         apiDataSource.loadTrailerFromMovieWith(id: id, loadCallback)
     }
+    
+    func loadTopRated(page: Int, _ loadCallback: @escaping (BaseCallback<SearchMoviesResponse>) -> Void) {
+        apiDataSource.loadTopRated(page: page, loadCallback)
+    }
 }
 
