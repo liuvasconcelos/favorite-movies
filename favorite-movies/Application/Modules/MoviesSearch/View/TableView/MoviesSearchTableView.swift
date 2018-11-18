@@ -38,9 +38,9 @@ class MoviesSearchTableView: UITableView, UITableViewDataSource, UITableViewDele
         return cell
     }
     
-     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+    func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
         let favorite = UITableViewRowAction(style: .normal, title: "Favorite") { action, index in
-            self.saveMovie(movie: self.movies[editActionsForRowAt.row])
+            self.save(movie: self.movies[editActionsForRowAt.row])
         }
         favorite.backgroundColor = .orange
         
@@ -65,7 +65,7 @@ class MoviesSearchTableView: UITableView, UITableViewDataSource, UITableViewDele
         self.contract?.didCellPressed(movie: movie)
     }
     
-    func saveMovie(movie: Movie) {
+    func save(movie: Movie) {
         self.contract?.favorite(movie: movie)
     }
 }

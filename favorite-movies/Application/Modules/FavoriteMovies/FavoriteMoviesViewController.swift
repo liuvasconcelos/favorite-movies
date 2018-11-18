@@ -15,9 +15,13 @@ class FavoriteMoviesViewController: UIViewController, FavoriteMoviesViewContract
     @IBOutlet weak var favoriteMoviesTableView: FavoriteMoviesTableView!
     @IBOutlet weak var searchForMovieButton: UIButton!
     @IBOutlet weak var errorOrEmptyMessage: UILabel!
+    
+    var movies: [Movie] = []
 
     lazy var presenter: FavoriteMoviesPresenterContract = {
-        return FavoriteMoviesPresenter(view: self, getMovie: InjectionUseCase.provideGetMovie())
+        return FavoriteMoviesPresenter(view: self,
+                                       getMovie: InjectionUseCase.provideGetMovie(),
+                                       deleteMovie: InjectionUseCase.provideDeleteMovie())
     }()
     
     override func viewDidLoad() {
@@ -36,14 +40,16 @@ class FavoriteMoviesViewController: UIViewController, FavoriteMoviesViewContract
     }
     
     func show(favoriteMovies: [Movie]) {
-        if favoriteMovies.isEmpty {
+        movies = favoriteMovies
+        
+        if movies.isEmpty {
             self.showEmptyMessage()
             return
         }
         
         favoriteMoviesTableView.isHidden = false
         errorOrEmptyMessage.isHidden     = true
-        favoriteMoviesTableView.set(movies: favoriteMovies)
+        favoriteMoviesTableView.set(movies: movies)
         favoriteMoviesTableView.reloadData()
     }
     
@@ -68,11 +74,21 @@ class FavoriteMoviesViewController: UIViewController, FavoriteMoviesViewContract
 }
 
 extension FavoriteMoviesViewController: FavoriteMoviesCellContract {
-    
+  
     func didCellPressed(movie: Movie) {
         let controller: MovieDetailsViewController = ViewUtils.loadNibNamed(MovieDetailsViewController.NIB_NAME, owner: self)!
         controller.set(movie: movie)
         self.present(controller, animated: true, completion: nil)
     }
     
+    func remove(movie: Movie, index: Int) {
+        let removed = self.presenter.remove(movie: movie)
+        
+        if removed {
+            movies.remove(at: index)
+            self.favoriteMoviesTableView.set(movies: movies)
+            self.favoriteMoviesTableView.reloadData()
+        }
+    }
+
 }

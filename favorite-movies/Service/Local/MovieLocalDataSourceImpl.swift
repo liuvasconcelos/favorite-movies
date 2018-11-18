@@ -50,5 +50,22 @@ public class MovieLocalDataSourceImpl: MovieLocalDataSource {
             
         }
     }
+    
+    public func remove(movie: Movie) -> Bool {
+        var removed = true
+        do {
+            try realm.write {
+                let entry = realm.object(ofType: MovieEntry.self,
+                                         forPrimaryKey: movie.id)
+                if let movie = entry {
+                    realm.delete(movie)
+                }
+            }
+        } catch {
+            removed = false
+        }
+        
+        return removed
+    }
 
 }

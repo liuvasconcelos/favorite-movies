@@ -10,6 +10,7 @@ import Foundation
 
 protocol FavoriteMoviesPresenterContract {
     func loadAllFavoriteMovies()
+    func remove(movie: Movie) -> Bool
 }
 
 protocol FavoriteMoviesViewContract {
@@ -19,4 +20,5 @@ protocol FavoriteMoviesViewContract {
 
 protocol FavoriteMoviesCellContract: class {
     func didCellPressed(movie: Movie)
+    func remove(movie: Movie, index: Int)
 }

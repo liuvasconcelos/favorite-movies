@@ -20,4 +20,9 @@ class InjectionUseCase {
         let localDataSource = InjectionLocalDataSource.provideMovieLocalDataSource()
         return SaveMovie(localDataSource: localDataSource)
     }
+    
+    static func provideDeleteMovie() -> DeleteMovie {
+        let localDataSource = InjectionLocalDataSource.provideMovieLocalDataSource()
+        return DeleteMovie(localDataSource: localDataSource)
+    }
 }

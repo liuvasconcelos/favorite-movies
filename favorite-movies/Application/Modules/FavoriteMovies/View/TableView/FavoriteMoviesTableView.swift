@@ -48,11 +48,24 @@ class FavoriteMoviesTableView: UITableView, UITableViewDataSource, UITableViewDe
         self.goToFilmDetails(movie: movies[indexPath.row])
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+        let removeFromFavorite = UITableViewRowAction(style: .normal, title: "Remove") { action, index in
+            self.remove(movie: self.movies[editActionsForRowAt.row], index: editActionsForRowAt.row)
+        }
+        removeFromFavorite.backgroundColor = .gray
+        
+        return [removeFromFavorite]
+    }
+    
     func set(movies: [Movie]) {
         self.movies = movies
     }
     
     func goToFilmDetails(movie: Movie) {
         self.contract?.didCellPressed(movie: movie)
+    }
+    
+    func remove(movie: Movie, index: Int) {
+        self.contract?.remove(movie: movie, index: index)
     }
 }

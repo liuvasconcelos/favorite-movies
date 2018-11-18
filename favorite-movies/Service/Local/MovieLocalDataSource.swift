@@ -11,4 +11,5 @@ import Foundation
 public protocol MovieLocalDataSource: class {
     func allMovies() -> [Movie]
     func save(movie: Movie)
+    func remove(movie: Movie) -> Bool
 }
