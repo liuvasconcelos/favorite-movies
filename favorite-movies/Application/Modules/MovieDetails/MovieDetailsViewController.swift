@@ -54,14 +54,14 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
         self.titleLabel.alpha   = 0.0
         self.sinopseLabel.alpha = 0.0
         
-        UIView.animate(withDuration: 3.0) {
+        UIView.animate(withDuration: 1.5) {
             if let movie = self.movieChoosen {
                 self.titleLabel.text = movie.title
                 if movie.overview.isEmpty {
                     self.sinopseLabel.text = AppStrings.noOverview
-                    return
+                } else {
+                    self.sinopseLabel.text = movie.overview
                 }
-                self.sinopseLabel.text = movie.overview
             } else {
                 self.titleLabel.text   = ""
                 self.sinopseLabel.text = ""
