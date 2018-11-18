@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  favorite-movies
+
+  Created by Livia Vasconcelos on 15/11/18.
+  Copyright © 2018 Livia Vasconcelos. All rights reserved.
+*/
+
+//General
+"back" = "Voltar";
+
+//Favorite Movies screen
+"lookForMoreFavorites" = "Favoritar outros filmes";
+"noFavoriteMovies"     = "Você não possui filmes favoritos.";
+
+//Movies Search screen
+"search"             = "Procurar";
+"searchMovieMessage" = "Por favor, digite o filme que deseja buscar.";
+"noResultsMessage"   = "Sua pesquisa não trouxe resultados.";
+"errorMessage"       = "Ocorreu um erro. Por favor, tente novamente.";
+
+//Movie Details screen
+"noTrailerMessage" = "Este filme não possui trailer";
