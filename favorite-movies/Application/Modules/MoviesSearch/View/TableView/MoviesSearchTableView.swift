@@ -52,6 +52,8 @@ class MoviesSearchTableView: UITableView, UITableViewDataSource, UITableViewDele
         if indexPath.row == movies.count - 1 {
             self.contract?.searchForMoreMovies(currentPage: self.currentPage)
         }
+        
+        animateReloadData(cell: cell)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -74,5 +76,21 @@ class MoviesSearchTableView: UITableView, UITableViewDataSource, UITableViewDele
     
     func save(movie: Movie) {
         self.contract?.favorite(movie: movie)
+    }
+    
+    func animateReloadData(cell: UITableViewCell) {
+        var rotation = CATransform3DMakeRotation( CGFloat((90.0 * M_PI)/180), 0.0, 0.7, 0.4);
+        rotation.m34 = 1.0 / -600
+        
+        cell.layer.shadowOffset = CGSize(width: 10.0, height: 10.0)
+        cell.alpha              = 0.0
+        cell.layer.transform    = rotation
+        cell.layer.anchorPoint  = CGPoint(x: 0.0, y: 0.5)
+        
+        cell.layer.transform = rotation
+        UIView.animate(withDuration: 1.5, animations:{cell.layer.transform = CATransform3DIdentity})
+        cell.alpha              = 1
+        cell.layer.shadowOffset = CGSize(width: 0, height: 0)
+        UIView.commitAnimations()
     }
 }
