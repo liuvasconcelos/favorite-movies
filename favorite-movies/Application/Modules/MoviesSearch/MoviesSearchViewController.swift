@@ -12,9 +12,9 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
     public static let NIB_NAME = "MoviesSearchViewController"
     
     @IBOutlet weak var moviesSearchTableView: MoviesSearchTableView!
-    @IBOutlet weak var searchTextField: UITextField!
-    @IBOutlet weak var buttonLabel: UIButton!
-    @IBOutlet weak var errorOrEmptyMessage: UILabel!
+    @IBOutlet weak var searchTextField:       UITextField!
+    @IBOutlet weak var buttonLabel:           UIButton!
+    @IBOutlet weak var errorOrEmptyMessage:   UILabel!
     
     lazy var presenter: MoviesSearchPresenterContract = {
         return MoviesSearchPresenter(view: self,
@@ -62,7 +62,8 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
             return
         }
         moviesSearchTableView.isHidden = false
-        errorOrEmptyMessage.isHidden = true
+        errorOrEmptyMessage.isHidden   = true
+        
         moviesSearchTableView.set(movies: movies)
         moviesSearchTableView.reloadData()
     }

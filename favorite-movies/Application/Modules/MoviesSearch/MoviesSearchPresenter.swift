@@ -8,8 +8,8 @@
 
 public class MoviesSearchPresenter: MoviesSearchPresenterContract {
     
-    private let view: MoviesSearchViewController
-    private let getMovie: GetMovie
+    private let view:      MoviesSearchViewController
+    private let getMovie:  GetMovie
     private let saveMovie: SaveMovie
     
     init(view: MoviesSearchViewController, getMovie: GetMovie, saveMovie: SaveMovie) {

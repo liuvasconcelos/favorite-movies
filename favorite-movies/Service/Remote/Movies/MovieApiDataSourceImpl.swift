@@ -14,8 +14,6 @@ class MovieApiDataSourceImpl: MovieApiDataSource {
 
     private static var INSTANCE: MovieApiDataSourceImpl?
     
-    let basicUrlForSearch: String = "https://api.themoviedb.org/3/search/movie?api_key=9ce37a42a90b830bd797fce0e235ca11"
-    
     public static func getInstance() -> MovieApiDataSourceImpl {
         if (INSTANCE == nil) {
             INSTANCE = MovieApiDataSourceImpl()
@@ -43,6 +41,8 @@ class MovieApiDataSourceImpl: MovieApiDataSource {
     }
     
     fileprivate func buildUrlForSearch(withQuery query: String) -> String {
+        let basicUrlForSearch: String = "https://api.themoviedb.org/3/search/movie?api_key=9ce37a42a90b830bd797fce0e235ca11"
+        
         if query.isEmpty {
             return basicUrlForSearch + "&query=%20"
         } else {

@@ -14,10 +14,10 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
     
     var movieChoosen: Movie?
     
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var sinopseLabel: UILabel!
+    @IBOutlet weak var titleLabel:          UILabel!
+    @IBOutlet weak var sinopseLabel:        UILabel!
     @IBOutlet weak var emptyOrErrorMessage: UILabel!
-    @IBOutlet weak var trailerContent: UIWebView!
+    @IBOutlet weak var trailerContent:      UIWebView!
     
     lazy var presenter: MovieDetailsPresenterContract = {
         return MovieDetailsPresenter(view: self,

@@ -13,8 +13,8 @@ class FavoriteMoviesViewController: UIViewController, FavoriteMoviesViewContract
     public static let NIB_NAME = "FavoriteMoviesViewController"
     
     @IBOutlet weak var favoriteMoviesTableView: FavoriteMoviesTableView!
-    @IBOutlet weak var searchForMovieButton: UIButton!
-    @IBOutlet weak var errorOrEmptyMessage: UILabel!
+    @IBOutlet weak var searchForMovieButton:    UIButton!
+    @IBOutlet weak var errorOrEmptyMessage:     UILabel!
     
     var movies: [Movie] = []
 
@@ -31,7 +31,7 @@ class FavoriteMoviesViewController: UIViewController, FavoriteMoviesViewContract
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        errorOrEmptyMessage.isHidden   = true
+        errorOrEmptyMessage.isHidden     = true
         favoriteMoviesTableView.contract = self
         
         searchForMovieButton.setTitle(AppStrings.lookForMoreFavorites, for: .normal)
@@ -49,6 +49,7 @@ class FavoriteMoviesViewController: UIViewController, FavoriteMoviesViewContract
         
         favoriteMoviesTableView.isHidden = false
         errorOrEmptyMessage.isHidden     = true
+        
         favoriteMoviesTableView.set(movies: movies)
         favoriteMoviesTableView.reloadData()
     }
