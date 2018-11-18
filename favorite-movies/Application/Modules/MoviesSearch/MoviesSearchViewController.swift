@@ -17,7 +17,10 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
     @IBOutlet weak var errorOrEmptyMessage:   UILabel!
     
     @IBOutlet weak var topRatedLabel: UILabel!
-    var movies: [Movie] = []
+    
+    var movies: [Movie]       = []
+    var topRated: Bool        = true
+    var currentSearch: String = ""
     
     lazy var presenter: MoviesSearchPresenterContract = {
         return MoviesSearchPresenter(view: self,
@@ -35,7 +38,8 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
         
         buttonLabel.setTitle(AppStrings.search, for: .normal)
         moviesSearchTableView.contract = self
-        topRatedLabel.text = AppStrings.topRated
+        topRatedLabel.text             = AppStrings.topRated
+        moviesSearchTableView.currentPage = 1
         
         if movies.isEmpty {
             presenter.loadTopRated(page: 1)
@@ -65,11 +69,16 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
     
     @IBAction func searchMovies(_ sender: Any) {
         let search = searchTextField.text ?? ""
-        presenter.searchMoviesBy(search)
+        self.movies                       = []
+        self.topRated                     = false
+        self.currentSearch                = search
+        moviesSearchTableView.currentPage = 1
+        
+        presenter.searchMoviesBy(search, currentPage: 1)
     }
     
     func show(movies: [Movie], topRated: Bool) {
-        self.movies = movies
+        self.movies += movies
         if movies.isEmpty {
             self.showEmptyMessage()
             return
@@ -79,7 +88,11 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
         topRatedLabel.isHidden         = !topRated
 
         moviesSearchTableView.set(movies: self.movies)
+        if moviesSearchTableView.currentPage < 3 {
+            moviesSearchTableView.setContentOffset(.zero, animated:true)
+        }
         moviesSearchTableView.reloadData()
+        moviesSearchTableView.currentPage += 1
     }
     
     fileprivate func showEmptyMessage() {
@@ -99,8 +112,7 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
 }
 
 extension MoviesSearchViewController: MoviesSearchCellContract {
-
-    func didCellPressed(movie: Movie) {
+   func didCellPressed(movie: Movie) {
         let controller: MovieDetailsViewController = ViewUtils.loadNibNamed(MovieDetailsViewController.NIB_NAME, owner: self)!
         controller.set(movie: movie)
         self.present(controller, animated: true, completion: nil)
@@ -108,6 +120,14 @@ extension MoviesSearchViewController: MoviesSearchCellContract {
     
     func favorite(movie: Movie) {
         self.presenter.favorite(movie: movie)
+    }
+    
+    func searchForMoreMovies(currentPage: Int) {
+        if topRated {
+            self.presenter.loadTopRated(page: currentPage)
+        } else {
+            self.presenter.searchMoviesBy(self.currentSearch, currentPage: currentPage)
+        }
     }
 
 }

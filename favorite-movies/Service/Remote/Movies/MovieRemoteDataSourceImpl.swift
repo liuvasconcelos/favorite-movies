@@ -29,8 +29,8 @@ class MovieRemoteDataSourceImpl: MovieRemoteDataSource {
         INSTANCE = nil
     }
     
-    func searchMoviesBy(query: String, _ loadCallback: @escaping (BaseCallback<SearchMoviesResponse>) -> Void) {
-        apiDataSource.searchMoviesBy(query: query, loadCallback)
+    func searchMoviesBy(query: String, page: Int, _ loadCallback: @escaping (BaseCallback<SearchMoviesResponse>) -> Void) {
+        apiDataSource.searchMoviesBy(query: query, page: page, loadCallback)
     }
     
     func loadTrailerFromMovieWith(id: Int, _ loadCallback: @escaping (BaseCallback<BaseTrailer>) -> Void) {

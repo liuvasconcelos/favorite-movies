@@ -18,8 +18,8 @@ public class MoviesSearchPresenter: MoviesSearchPresenterContract {
         self.saveMovie = saveMovie
     }
     
-    func searchMoviesBy(_ search: String) {
-        getMovie.searchMoviesBy(query: search) { (callback) in
+    func searchMoviesBy(_ search: String, currentPage: Int) {
+        getMovie.searchMoviesBy(query: search, page: currentPage) { (callback) in
             callback.onSuccess({ (searchMovies) in
                 self.checkList(result: searchMovies, topRated: false)
             })

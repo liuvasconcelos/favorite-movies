@@ -14,7 +14,8 @@ class MoviesSearchTableView: UITableView, UITableViewDataSource, UITableViewDele
     public static let NIB_NAME = "MoviesSearchTableView"
     public weak var contract: MoviesSearchCellContract?
     
-    var movies = [Movie]()
+    var movies      = [Movie]()
+    var currentPage = 0
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -45,6 +46,12 @@ class MoviesSearchTableView: UITableView, UITableViewDataSource, UITableViewDele
         favorite.backgroundColor = .orange
         
         return [favorite]
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == movies.count - 1 {
+            self.contract?.searchForMoreMovies(currentPage: self.currentPage)
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
