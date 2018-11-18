@@ -14,7 +14,7 @@ class FavoriteMoviesTableView: UITableView, UITableViewDataSource, UITableViewDe
     public static let NIB_NAME = "FavoriteMoviesTableView"
     public weak var contract: FavoriteMoviesCellContract?
     
-    var movies = [MovieResponse]()
+    var movies = [Movie]()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -32,11 +32,8 @@ class FavoriteMoviesTableView: UITableView, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteMoviesCell.IDENTIFIER, for: indexPath as IndexPath) as! MoviesSearchCell
-        if let title = movies[indexPath.row].title {
-            cell.configureView(film: title)
-        }
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteMoviesCell.IDENTIFIER, for: indexPath as IndexPath) as! FavoriteMoviesCell
+        cell.configureView(film: movies[indexPath.row].title)
         cell.contentView.isUserInteractionEnabled = true
         return cell
     }
@@ -51,11 +48,11 @@ class FavoriteMoviesTableView: UITableView, UITableViewDataSource, UITableViewDe
         self.goToFilmDetails(movie: movies[indexPath.row])
     }
     
-    func set(movies: [MovieResponse]) {
+    func set(movies: [Movie]) {
         self.movies = movies
     }
     
-    func goToFilmDetails(movie: MovieResponse) {
+    func goToFilmDetails(movie: Movie) {
         self.contract?.didCellPressed(movie: movie)
     }
 }

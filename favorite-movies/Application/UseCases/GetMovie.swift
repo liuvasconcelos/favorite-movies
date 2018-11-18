@@ -11,9 +11,11 @@ import Foundation
 class GetMovie {
     
     private let remoteDataSource: MovieRemoteDataSource
+    private let localDataSource:  MovieLocalDataSource
     
-    init(remoteDataSource: MovieRemoteDataSource) {
+    init(remoteDataSource: MovieRemoteDataSource, localDataSource: MovieLocalDataSource) {
         self.remoteDataSource = remoteDataSource
+        self.localDataSource  = localDataSource
     }
     
     func searchMoviesBy(query: String, _ loadCallback: @escaping (BaseCallback<SearchMoviesResponse>) -> Void) {
@@ -24,4 +26,8 @@ class GetMovie {
         remoteDataSource.loadTrailerFromMovieWith(id: id, loadCallback)
     }
     
+    func loadAllFavoriteMovies() -> [Movie]{
+        return localDataSource.allMovies()
+    }
+
 }

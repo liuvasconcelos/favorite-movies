@@ -14,7 +14,7 @@ class MoviesSearchTableView: UITableView, UITableViewDataSource, UITableViewDele
     public static let NIB_NAME = "MoviesSearchTableView"
     public weak var contract: MoviesSearchCellContract?
     
-    var movies = [MovieResponse]()
+    var movies = [Movie]()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -33,12 +33,18 @@ class MoviesSearchTableView: UITableView, UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MoviesSearchCell.IDENTIFIER, for: indexPath as IndexPath) as! MoviesSearchCell
-        if let title = movies[indexPath.row].title {
-            cell.configureView(film: title)
-        }
-        
+        cell.configureView(film: movies[indexPath.row].title)
         cell.contentView.isUserInteractionEnabled = true
         return cell
+    }
+    
+     func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+        let favorite = UITableViewRowAction(style: .normal, title: "Favorite") { action, index in
+            self.saveMovie(movie: self.movies[editActionsForRowAt.row])
+        }
+        favorite.backgroundColor = .orange
+        
+        return [favorite]
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -51,11 +57,15 @@ class MoviesSearchTableView: UITableView, UITableViewDataSource, UITableViewDele
         self.goToFilmDetails(movie: movies[indexPath.row])
     }
     
-    func set(movies: [MovieResponse]) {
+    func set(movies: [Movie]) {
         self.movies = movies
     }
     
-    func goToFilmDetails(movie: MovieResponse) {
+    func goToFilmDetails(movie: Movie) {
         self.contract?.didCellPressed(movie: movie)
+    }
+    
+    func saveMovie(movie: Movie) {
+        self.contract?.favorite(movie: movie)
     }
 }

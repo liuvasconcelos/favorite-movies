@@ -17,6 +17,7 @@ class MoviesSearchCell: UITableViewCell {
     
     func configureView(film: String) {
         filmTitleLabel.text = film
+        
     }
     
 }

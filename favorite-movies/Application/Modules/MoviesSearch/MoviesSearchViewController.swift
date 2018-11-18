@@ -18,7 +18,8 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
     
     lazy var presenter: MoviesSearchPresenterContract = {
         return MoviesSearchPresenter(view: self,
-                                     getMovie: InjectionUseCase.provideGetMovie())
+                                     getMovie: InjectionUseCase.provideGetMovie(),
+                                     saveMovie: InjectionUseCase.provideSaveMovie())
     }()
     
     override func viewDidLoad() {
@@ -55,7 +56,7 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
         presenter.searchMoviesBy(search)
     }
     
-    func show(movies: [MovieResponse]) {
+    func show(movies: [Movie]) {
         if movies.isEmpty {
             self.showEmptyMessage()
             return
@@ -83,10 +84,14 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
 
 extension MoviesSearchViewController: MoviesSearchCellContract {
 
-    func didCellPressed(movie: MovieResponse) {
+    func didCellPressed(movie: Movie) {
         let controller: MovieDetailsViewController = ViewUtils.loadNibNamed(MovieDetailsViewController.NIB_NAME, owner: self)!
         controller.set(movie: movie)
         self.present(controller, animated: true, completion: nil)
+    }
+    
+    func favorite(movie: Movie) {
+        self.presenter.favorite(movie: movie)
     }
 
 }

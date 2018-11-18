@@ -9,14 +9,16 @@
 import Foundation
 
 protocol MoviesSearchPresenterContract {
-    func searchMoviesBy(_ search: String) 
+    func searchMoviesBy(_ search: String)
+    func favorite(movie: Movie)
 }
 
 protocol MoviesSearchViewContract {
-    func show(movies: [MovieResponse])
+    func show(movies: [Movie])
     func showErrorMessage()
 }
 
 protocol MoviesSearchCellContract: class {
-    func didCellPressed(movie: MovieResponse)
+    func didCellPressed(movie: Movie)
+    func favorite(movie: Movie)
 }

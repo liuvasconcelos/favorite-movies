@@ -8,6 +8,7 @@ target 'favorite-movies' do
   # Pods for favorite-movies
     pod 'ObjectMapper', '~> 3.4'
     pod 'AlamofireObjectMapper', '~> 5.0'
+    pod 'RealmSwift'
 
   target 'favorite-moviesTests' do
     inherit! :search_paths

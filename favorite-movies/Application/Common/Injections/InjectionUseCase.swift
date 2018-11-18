@@ -12,7 +12,12 @@ class InjectionUseCase {
     
     static func provideGetMovie() -> GetMovie {
         let remoteDataSource = InjectionRemoteDataSource.provideMovieRemoteDataSource()
-        return GetMovie(remoteDataSource: remoteDataSource)
+        let localDataSource  = InjectionLocalDataSource.provideMovieLocalDataSource()
+        return GetMovie(remoteDataSource: remoteDataSource, localDataSource: localDataSource)
     }
     
+    static func provideSaveMovie() -> SaveMovie {
+        let localDataSource = InjectionLocalDataSource.provideMovieLocalDataSource()
+        return SaveMovie(localDataSource: localDataSource)
+    }
 }

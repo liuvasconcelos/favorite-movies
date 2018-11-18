@@ -17,7 +17,7 @@ class FavoriteMoviesViewController: UIViewController, FavoriteMoviesViewContract
     @IBOutlet weak var errorOrEmptyMessage: UILabel!
 
     lazy var presenter: FavoriteMoviesPresenterContract = {
-        return FavoriteMoviesPresenter(view: self)
+        return FavoriteMoviesPresenter(view: self, getMovie: InjectionUseCase.provideGetMovie())
     }()
     
     override func viewDidLoad() {
@@ -35,7 +35,7 @@ class FavoriteMoviesViewController: UIViewController, FavoriteMoviesViewContract
         presenter.loadAllFavoriteMovies()
     }
     
-    func show(favoriteMovies: [MovieResponse]) {
+    func show(favoriteMovies: [Movie]) {
         if favoriteMovies.isEmpty {
             self.showEmptyMessage()
             return
@@ -69,7 +69,7 @@ class FavoriteMoviesViewController: UIViewController, FavoriteMoviesViewContract
 
 extension FavoriteMoviesViewController: FavoriteMoviesCellContract {
     
-    func didCellPressed(movie: MovieResponse) {
+    func didCellPressed(movie: Movie) {
         let controller: MovieDetailsViewController = ViewUtils.loadNibNamed(MovieDetailsViewController.NIB_NAME, owner: self)!
         controller.set(movie: movie)
         self.present(controller, animated: true, completion: nil)

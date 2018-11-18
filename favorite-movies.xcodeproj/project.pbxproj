@@ -20,6 +20,13 @@
 		5346CA7021A098B5009274DA /* MovieDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5346CA6F21A098B5009274DA /* MovieDetailsPresenter.swift */; };
 		5346CA7221A098C6009274DA /* MovieDetailsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5346CA7121A098C6009274DA /* MovieDetailsContract.swift */; };
 		5346CA7421A09E6C009274DA /* TrailerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5346CA7321A09E6C009274DA /* TrailerResponse.swift */; };
+		5399666521A0D627008B1188 /* MovieEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5399666421A0D627008B1188 /* MovieEntry.swift */; };
+		5399666821A0D9A3008B1188 /* MovieConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5399666721A0D9A3008B1188 /* MovieConverter.swift */; };
+		5399666B21A0D9D0008B1188 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5399666A21A0D9D0008B1188 /* Movie.swift */; };
+		5399666E21A0DEF8008B1188 /* MovieLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5399666D21A0DEF8008B1188 /* MovieLocalDataSource.swift */; };
+		5399667021A0DF49008B1188 /* MovieLocalDataSourceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5399666F21A0DF49008B1188 /* MovieLocalDataSourceImpl.swift */; };
+		5399667221A0DFBD008B1188 /* InjectionLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5399667121A0DFBD008B1188 /* InjectionLocalDataSource.swift */; };
+		5399667421A0E1C2008B1188 /* SaveMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5399667321A0E1C2008B1188 /* SaveMovie.swift */; };
 		53B7D95E219DE08400596DFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B7D95D219DE08400596DFD /* AppDelegate.swift */; };
 		53B7D965219DE08500596DFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53B7D964219DE08500596DFD /* Assets.xcassets */; };
 		53B7D968219DE08500596DFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53B7D966219DE08500596DFD /* LaunchScreen.storyboard */; };
@@ -87,6 +94,13 @@
 		5346CA6F21A098B5009274DA /* MovieDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsPresenter.swift; sourceTree = "<group>"; };
 		5346CA7121A098C6009274DA /* MovieDetailsContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsContract.swift; sourceTree = "<group>"; };
 		5346CA7321A09E6C009274DA /* TrailerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerResponse.swift; sourceTree = "<group>"; };
+		5399666421A0D627008B1188 /* MovieEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieEntry.swift; sourceTree = "<group>"; };
+		5399666721A0D9A3008B1188 /* MovieConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieConverter.swift; sourceTree = "<group>"; };
+		5399666A21A0D9D0008B1188 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		5399666D21A0DEF8008B1188 /* MovieLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieLocalDataSource.swift; sourceTree = "<group>"; };
+		5399666F21A0DF49008B1188 /* MovieLocalDataSourceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieLocalDataSourceImpl.swift; sourceTree = "<group>"; };
+		5399667121A0DFBD008B1188 /* InjectionLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionLocalDataSource.swift; sourceTree = "<group>"; };
+		5399667321A0E1C2008B1188 /* SaveMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveMovie.swift; sourceTree = "<group>"; };
 		53B7D95A219DE08400596DFD /* favorite-movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "favorite-movies.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		53B7D95D219DE08400596DFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		53B7D964219DE08500596DFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -214,6 +228,39 @@
 				5346CA6B21A08671009274DA /* MovieDetailsViewController.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		5399666321A0D5DD008B1188 /* Entries */ = {
+			isa = PBXGroup;
+			children = (
+				5399666421A0D627008B1188 /* MovieEntry.swift */,
+			);
+			path = Entries;
+			sourceTree = "<group>";
+		};
+		5399666621A0D98E008B1188 /* Converters */ = {
+			isa = PBXGroup;
+			children = (
+				5399666721A0D9A3008B1188 /* MovieConverter.swift */,
+			);
+			name = Converters;
+			sourceTree = "<group>";
+		};
+		5399666921A0D9BF008B1188 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				5399666A21A0D9D0008B1188 /* Movie.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		5399666C21A0DEE4008B1188 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				5399666D21A0DEF8008B1188 /* MovieLocalDataSource.swift */,
+				5399666F21A0DF49008B1188 /* MovieLocalDataSourceImpl.swift */,
+			);
+			path = Local;
 			sourceTree = "<group>";
 		};
 		53B7D951219DE08400596DFD = {
@@ -349,7 +396,10 @@
 		53B7D9A3219DF31900596DFD /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				53B7D9A5219DF34A00596DFD /* Entities */,
+				5399666921A0D9BF008B1188 /* Entities */,
+				5399666621A0D98E008B1188 /* Converters */,
+				5399666321A0D5DD008B1188 /* Entries */,
+				53B7D9A5219DF34A00596DFD /* Responses */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -357,20 +407,21 @@
 		53B7D9A4219DF32400596DFD /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				5399666C21A0DEE4008B1188 /* Local */,
 				53B7D9AF219DF82400596DFD /* Remote */,
 				53B7D9AA219DF78500596DFD /* Common */,
 			);
 			path = Service;
 			sourceTree = "<group>";
 		};
-		53B7D9A5219DF34A00596DFD /* Entities */ = {
+		53B7D9A5219DF34A00596DFD /* Responses */ = {
 			isa = PBXGroup;
 			children = (
 				53B7D9A6219DF3A600596DFD /* MovieResponse.swift */,
 				53B7D9A8219DF67D00596DFD /* SearchMoviesResponse.swift */,
 				5346CA7321A09E6C009274DA /* TrailerResponse.swift */,
 			);
-			path = Entities;
+			path = Responses;
 			sourceTree = "<group>";
 		};
 		53B7D9AA219DF78500596DFD /* Common */ = {
@@ -405,6 +456,7 @@
 			isa = PBXGroup;
 			children = (
 				53B7D9BA219DFBF100596DFD /* GetMovie.swift */,
+				5399667321A0E1C2008B1188 /* SaveMovie.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -415,6 +467,7 @@
 				53B7D9BD219E00C400596DFD /* InjectionUseCase.swift */,
 				53B7D9BF219E010800596DFD /* InjectionRemoteDataSource.swift */,
 				53B7D9C1219E015200596DFD /* InjectionApiDataSource.swift */,
+				5399667121A0DFBD008B1188 /* InjectionLocalDataSource.swift */,
 			);
 			path = Injections;
 			sourceTree = "<group>";
@@ -634,12 +687,16 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -672,21 +729,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				53B7D9BB219DFBF100596DFD /* GetMovie.swift in Sources */,
+				5399667221A0DFBD008B1188 /* InjectionLocalDataSource.swift in Sources */,
 				5346CA5B21A071F3009274DA /* FavoriteMoviesPresenter.swift in Sources */,
 				5346CA6E21A08687009274DA /* MovieDetailsViewController.swift in Sources */,
 				53B7D9BE219E00C400596DFD /* InjectionUseCase.swift in Sources */,
 				53B7D9C0219E010800596DFD /* InjectionRemoteDataSource.swift in Sources */,
 				53B7D9C2219E015200596DFD /* InjectionApiDataSource.swift in Sources */,
+				5399666B21A0D9D0008B1188 /* Movie.swift in Sources */,
 				53B7D9A9219DF67D00596DFD /* SearchMoviesResponse.swift in Sources */,
 				53B7D98F219DE30400596DFD /* MoviesSearchViewController.swift in Sources */,
+				5399667421A0E1C2008B1188 /* SaveMovie.swift in Sources */,
+				5399666E21A0DEF8008B1188 /* MovieLocalDataSource.swift in Sources */,
 				5346CA6621A072C8009274DA /* FavoriteMoviesCell.swift in Sources */,
 				53B7D9C5219E106900596DFD /* AppStrings.swift in Sources */,
 				5346CA7421A09E6C009274DA /* TrailerResponse.swift in Sources */,
+				5399666521A0D627008B1188 /* MovieEntry.swift in Sources */,
 				53B7D9B4219DF85F00596DFD /* MovieRemoteDataSource.swift in Sources */,
 				53B7D9B8219DF88400596DFD /* MovieApiDataSourceImpl.swift in Sources */,
 				53B7D95E219DE08400596DFD /* AppDelegate.swift in Sources */,
 				53B7D9AC219DF79100596DFD /* BaseCallback.swift in Sources */,
 				53B7D99C219DE38D00596DFD /* MoviesSearchCell.swift in Sources */,
+				5399667021A0DF49008B1188 /* MovieLocalDataSourceImpl.swift in Sources */,
 				5346CA5D21A071FE009274DA /* FavoriteMoviesContract.swift in Sources */,
 				5346CA5921A071E6009274DA /* FavoriteMoviesViewController.swift in Sources */,
 				5346CA7021A098B5009274DA /* MovieDetailsPresenter.swift in Sources */,
@@ -700,6 +763,7 @@
 				5346CA7221A098C6009274DA /* MovieDetailsContract.swift in Sources */,
 				5346CA6321A072AA009274DA /* FavoriteMoviesTableView.swift in Sources */,
 				53B7D993219DE32400596DFD /* MoviesSearchContract.swift in Sources */,
+				5399666821A0D9A3008B1188 /* MovieConverter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

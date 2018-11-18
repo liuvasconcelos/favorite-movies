@@ -8,29 +8,17 @@
 
 public class FavoriteMoviesPresenter: FavoriteMoviesPresenterContract {
 
-    private let view: FavoriteMoviesViewController
+    private let view:     FavoriteMoviesViewController
+    private let getMovie: GetMovie
     
-    init(view: FavoriteMoviesViewController) {
-        self.view = view
+    init(view: FavoriteMoviesViewController, getMovie: GetMovie) {
+        self.view     = view
+        self.getMovie = getMovie
     }
     
     func loadAllFavoriteMovies() {
-        self.view.show(favoriteMovies: [])
+        let movies = getMovie.loadAllFavoriteMovies()
+        self.view.show(favoriteMovies: movies)
     }
-    
-//    func searchMoviesBy(_ search: String) {
-//        getMovie.searchMoviesBy(query: search) { (callback) in
-//            callback.onSuccess({ (searchMovies) in
-//                if let movies = searchMovies.results {
-//                    self.view.show(movies: movies)
-//                } else {
-//                    self.view.showErrorMessage()
-//                }
-//            })
-//
-//            callback.onFailed({ (error) in
-//                self.view.showErrorMessage()
-//            })
-//        }
-//    }
+
 }

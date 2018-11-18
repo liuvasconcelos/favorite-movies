@@ -12,13 +12,11 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
   
     public static let NIB_NAME = "MovieDetailsViewController"
     
-    var movieChoosen: MovieResponse?
+    var movieChoosen: Movie?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var sinopseLabel: UILabel!
     @IBOutlet weak var emptyOrErrorMessage: UILabel!
-    
-
     @IBOutlet weak var trailerContent: UIWebView!
     
     lazy var presenter: MovieDetailsPresenterContract = {
@@ -33,7 +31,7 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter.loadTrailerFromMovieWith(id: movieChoosen!.id!)
+        presenter.loadTrailerFromMovieWith(id: Int(movieChoosen?.id ?? "0") ?? 0)
         emptyOrErrorMessage.isHidden = true
         
         if let movie = movieChoosen {
@@ -61,7 +59,7 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func set(movie: MovieResponse) {
+    func set(movie: Movie) {
         self.movieChoosen = movie
     }
     
@@ -79,14 +77,11 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
                 return
             }
         }
-        
-        
     }
     
     func showErrorMessage() {
         emptyOrErrorMessage.isHidden = false
         emptyOrErrorMessage.text     = AppStrings.errorMessage
-        
     }
     
 }

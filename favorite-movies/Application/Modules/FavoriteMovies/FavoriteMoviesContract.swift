@@ -13,10 +13,10 @@ protocol FavoriteMoviesPresenterContract {
 }
 
 protocol FavoriteMoviesViewContract {
-    func show(favoriteMovies: [MovieResponse])
+    func show(favoriteMovies: [Movie])
     func showErrorMessage()
 }
 
 protocol FavoriteMoviesCellContract: class {
-    func didCellPressed(movie: MovieResponse)
+    func didCellPressed(movie: Movie)
 }
