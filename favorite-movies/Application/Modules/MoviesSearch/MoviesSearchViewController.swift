@@ -13,7 +13,6 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
     
     @IBOutlet weak var moviesSearchTableView: MoviesSearchTableView!
     @IBOutlet weak var searchTextField:       UITextField!
-    @IBOutlet weak var buttonLabel:           UIButton!
     @IBOutlet weak var errorOrEmptyMessage:   UILabel!
     
     @IBOutlet weak var topRatedLabel: UILabel!
@@ -38,7 +37,6 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        buttonLabel.setTitle(AppStrings.search, for: .normal)
         moviesSearchTableView.contract = self
         topRatedLabel.text             = AppStrings.topRated
         moviesSearchTableView.currentPage = 1
@@ -52,6 +50,22 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
             moviesSearchTableView.set(movies: self.movies)
             moviesSearchTableView.reloadData()
         }
+        
+        searchTextField.addTarget(self, action: #selector(textFieldDidChange), for: UIControl.Event.editingChanged)
+    }
+    
+    @objc func textFieldDidChange(textField: UITextField) {
+        let search = searchTextField.text ?? ""
+        self.movies                       = []
+        self.topRated                     = false
+        self.currentSearch                = search
+        moviesSearchTableView.currentPage = 1
+        
+        if search.isEmpty {
+            presenter.loadTopRated(page: 1)
+            self.topRated = true
+        }
+        presenter.searchMoviesBy(search, currentPage: 1)
     }
     
     func setNavigationBar() {
@@ -67,16 +81,6 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
     
     @objc func done() {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func searchMovies(_ sender: Any) {
-        let search = searchTextField.text ?? ""
-        self.movies                       = []
-        self.topRated                     = false
-        self.currentSearch                = search
-        moviesSearchTableView.currentPage = 1
-        
-        presenter.searchMoviesBy(search, currentPage: 1)
     }
     
     func show(movies: [Movie], topRated: Bool) {

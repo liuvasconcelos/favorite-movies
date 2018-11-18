@@ -14,7 +14,6 @@
 "noFavoriteMovies"     = "You have no favorite movies.";
 
 //Movies Search screen
-"search"             = "Search";
 "searchMovieMessage" = "Please type the film that you want to search.";
 "noResultsMessage"   = "Your search brought no results.";
 "errorMessage"       = "An error occured. Please try again.";
