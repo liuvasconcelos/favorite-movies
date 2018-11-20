@@ -16,6 +16,8 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
     @IBOutlet weak var errorOrEmptyMessage:   UILabel!
     
     @IBOutlet weak var topRatedLabel: UILabel!
+    @IBOutlet weak var cancelButton: UIButton!
+    
     
     var loader: UIActivityIndicatorView = UIActivityIndicatorView()
     
@@ -40,6 +42,7 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
         moviesSearchTableView.contract = self
         topRatedLabel.text             = AppStrings.topRated
         moviesSearchTableView.currentPage = 1
+        cancelButton.setTitle(AppStrings.cancel, for: .normal)
         
         if movies.isEmpty {
             presenter.loadTopRated(page: 1)
@@ -70,7 +73,7 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
     
     func setNavigationBar() {
         let screenSize: CGRect = UIScreen.main.bounds
-        let navBar             = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 50))
+        let navBar             = UINavigationBar(frame:  CGRect(x: screenSize.origin.x, y:  UIApplication.shared.statusBarFrame.height, width: screenSize.size.width, height: 44))
         let navItem            = UINavigationItem(title: "")
         let back               = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: nil, action: #selector(done))
         
@@ -127,6 +130,11 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
     
     func hideLoader() {
         loader.stopAnimating()
+    }
+    
+    @IBAction func cancelSearch(_ sender: Any) {
+        searchTextField.text = ""
+        presenter.loadTopRated(page: 1)
     }
 }
 

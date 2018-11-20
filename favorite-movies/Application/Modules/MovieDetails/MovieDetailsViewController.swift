@@ -20,7 +20,9 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
     @IBOutlet weak var trailerContent:      UIWebView!
     @IBOutlet weak var image:               UIImageView!
     @IBOutlet weak var averageLabel:        UILabel!
-    @IBOutlet weak var favoriteLabel: UIButton!
+    @IBOutlet weak var favoriteLabel:       UIButton!
+    @IBOutlet weak var backgroundBlush:     UIImageView!
+    @IBOutlet weak var blur:                UIVisualEffectView!
     
     var loader: UIActivityIndicatorView = UIActivityIndicatorView()
     
@@ -36,6 +38,10 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if #available(iOS 11.0, *) {
+            self.additionalSafeAreaInsets.top = 20
+        }
+        
         super.viewWillAppear(animated)
         presenter.loadTrailerFromMovieWith(id: Int(movieChoosen?.id ?? "0") ?? 0)
         emptyOrErrorMessage.isHidden = true
@@ -46,7 +52,7 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
     
     func setNavigationBar() {
         let screenSize: CGRect = UIScreen.main.bounds
-        let navBar             = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 50))
+        let navBar             = UINavigationBar(frame:  CGRect(x: screenSize.origin.x, y:  UIApplication.shared.statusBarFrame.height, width: screenSize.size.width, height: 44))
         let navItem            = UINavigationItem(title: "")
         let back               = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: nil, action: #selector(done))
         
@@ -61,6 +67,8 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
         self.image.alpha        = 0.0
         self.averageLabel.alpha = 0.0
         
+        self.sinopseLabel.sizeToFit()
+        
         UIView.animate(withDuration: 1.5) {
             if let movie = self.movieChoosen {
                 self.titleLabel.text = movie.title
@@ -74,9 +82,11 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
                 if let url = NSURL(string: imagePath) {
                     if let data = NSData(contentsOf: url as URL) {
                         self.image.image = UIImage(data: data as Data)
+                        self.backgroundBlush.image = UIImage(data: data as Data)
                     }
                 }
                 
+                self.blur.effect       = UIBlurEffect(style: UIBlurEffect.Style.dark)
                 self.averageLabel.text = AppStrings.average + String(movie.voteAverage)
                 
             } else {
@@ -101,6 +111,7 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
     
     func show(trailers: [TrailerResponse]) {
         if trailers.isEmpty {
+            trailerContent.isHidden = true
             emptyOrErrorMessage.alpha = 0.0
             UIView.animate(withDuration: 3.0) {
                 self.emptyOrErrorMessage.isHidden = false

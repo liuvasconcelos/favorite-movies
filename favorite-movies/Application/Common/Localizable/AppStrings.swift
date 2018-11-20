@@ -20,6 +20,7 @@ public class AppStrings {
     public static let noOverview           = localized("noOverview")
     public static let average              = localized("average")
     public static let favorite             = localized("favorite")
+    public static let cancel               = localized("cancel")
     
     public static func localized(_ value: String) -> String {
         return NSLocalizedString(value, tableName: nil, bundle: Bundle.main, value: "", comment: "")
