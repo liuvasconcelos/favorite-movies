@@ -22,3 +22,5 @@
 //Movie Details screen
 "noTrailerMessage" = "Este filme não possui trailer";
 "noOverview"       = "Este filme não possui sinopse";
+"average"          = "Nota: ";
+"favorite"         = "Favoritar";

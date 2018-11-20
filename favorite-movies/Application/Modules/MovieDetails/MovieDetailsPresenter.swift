@@ -8,12 +8,14 @@
 
 public class MovieDetailsPresenter: MovieDetailsPresenterContract {
 
-    private let view: MovieDetailsViewController
-    private let getMovie: GetMovie
+    private let view:      MovieDetailsViewController
+    private let getMovie:  GetMovie
+    private let saveMovie: SaveMovie
     
-    init(view: MovieDetailsViewController, getMovie: GetMovie) {
+    init(view: MovieDetailsViewController, getMovie: GetMovie, saveMovie: SaveMovie) {
         self.view     = view
         self.getMovie = getMovie
+        self.saveMovie = saveMovie
     }
     
     func loadTrailerFromMovieWith(id: Int) {
@@ -31,6 +33,10 @@ public class MovieDetailsPresenter: MovieDetailsPresenterContract {
                 self.view.hideLoader()
             })
         }
+    }
+    
+    func favorite(movie: Movie) {
+        saveMovie.saveMovieAsFavorite(movie: movie)
     }
     
 }

@@ -10,6 +10,7 @@ import Foundation
 
 protocol MovieDetailsPresenterContract {
     func loadTrailerFromMovieWith(id: Int)
+    func favorite(movie: Movie)
 }
 
 protocol MovieDetailsViewContract {

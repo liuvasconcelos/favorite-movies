@@ -18,6 +18,8 @@ public class AppStrings {
     public static let noTrailerMessage     = localized("noTrailerMessage")
     public static let topRated             = localized("topRated")
     public static let noOverview           = localized("noOverview")
+    public static let average              = localized("average")
+    public static let favorite             = localized("favorite")
     
     public static func localized(_ value: String) -> String {
         return NSLocalizedString(value, tableName: nil, bundle: Bundle.main, value: "", comment: "")

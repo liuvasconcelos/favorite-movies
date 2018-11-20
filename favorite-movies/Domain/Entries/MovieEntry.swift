@@ -10,10 +10,11 @@ import RealmSwift
 
 class MovieEntry: Object {
     
-    @objc dynamic var id         = String()
-    @objc dynamic var title      = String()
-    @objc dynamic var posterPath = String()
-    @objc dynamic var overview   = String()
+    @objc dynamic var id          = String()
+    @objc dynamic var title       = String()
+    @objc dynamic var posterPath  = String()
+    @objc dynamic var overview    = String()
+    @objc dynamic var voteAverage = Float()
     
     override static func primaryKey() -> String? {
         return "id"

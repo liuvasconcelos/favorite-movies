@@ -18,12 +18,16 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
     @IBOutlet weak var sinopseLabel:        UILabel!
     @IBOutlet weak var emptyOrErrorMessage: UILabel!
     @IBOutlet weak var trailerContent:      UIWebView!
+    @IBOutlet weak var image:               UIImageView!
+    @IBOutlet weak var averageLabel:        UILabel!
+    @IBOutlet weak var favoriteLabel: UIButton!
     
     var loader: UIActivityIndicatorView = UIActivityIndicatorView()
     
     lazy var presenter: MovieDetailsPresenterContract = {
         return MovieDetailsPresenter(view: self,
-                                     getMovie: InjectionUseCase.provideGetMovie())
+                                     getMovie: InjectionUseCase.provideGetMovie(),
+                                     saveMovie: InjectionUseCase.provideSaveMovie())
     }()
     
     override func viewDidLoad() {
@@ -35,6 +39,7 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
         super.viewWillAppear(animated)
         presenter.loadTrailerFromMovieWith(id: Int(movieChoosen?.id ?? "0") ?? 0)
         emptyOrErrorMessage.isHidden = true
+        favoriteLabel.setTitle(AppStrings.favorite, for: .normal)
         
         showMovieDetails()
     }
@@ -53,6 +58,8 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
     fileprivate func showMovieDetails() {
         self.titleLabel.alpha   = 0.0
         self.sinopseLabel.alpha = 0.0
+        self.image.alpha        = 0.0
+        self.averageLabel.alpha = 0.0
         
         UIView.animate(withDuration: 1.5) {
             if let movie = self.movieChoosen {
@@ -62,6 +69,16 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
                 } else {
                     self.sinopseLabel.text = movie.overview
                 }
+                
+                let imagePath = "https://image.tmdb.org/t/p/w600_and_h900_bestv2" + movie.posterPath
+                if let url = NSURL(string: imagePath) {
+                    if let data = NSData(contentsOf: url as URL) {
+                        self.image.image = UIImage(data: data as Data)
+                    }
+                }
+                
+                self.averageLabel.text = AppStrings.average + String(movie.voteAverage)
+                
             } else {
                 self.titleLabel.text   = ""
                 self.sinopseLabel.text = ""
@@ -69,8 +86,11 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
             
             self.titleLabel.alpha   = 1.0
             self.sinopseLabel.alpha = 1.0
+            self.image.alpha        = 1.0
+            self.averageLabel.alpha = 1.0
         }
     }
+    
     @objc func done() {
         self.dismiss(animated: true, completion: nil)
     }
@@ -124,6 +144,12 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
     
     func hideLoader() {
         loader.stopAnimating()
+    }
+    
+    @IBAction func favoriteMovie(_ sender: Any) {
+        if let movie = movieChoosen {
+            self.presenter.favorite(movie: movie)
+        }
     }
 }
 

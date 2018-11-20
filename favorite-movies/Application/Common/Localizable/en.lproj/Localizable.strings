@@ -22,5 +22,7 @@
 //Movie Details screen
 "noTrailerMessage" = "This movie has no trailer.";
 "noOverview"       = "This moview has no overview";
+"average"          = "Average: ";
+"favorite"         = "Favorite";
 
 
