@@ -14,9 +14,11 @@ class MoviesSearchCell: UITableViewCell {
     public static let IDENTIFIER = "MoviesSearchCellIdentifier"
     
     @IBOutlet weak var filmTitleLabel: UILabel!
+    @IBOutlet weak var filmRate: UILabel!
     
-    func configureView(film: String) {
-        filmTitleLabel.text = film
+    func configureView(movie: Movie) {
+        filmTitleLabel.text = movie.title
+        filmRate.text = AppStrings.average + String(movie.voteAverage)
     }
     
 }

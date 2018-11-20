@@ -21,6 +21,9 @@ public class AppStrings {
     public static let average              = localized("average")
     public static let favorite             = localized("favorite")
     public static let cancel               = localized("cancel")
+    public static let details              = localized("details")
+    public static let searchForMovies      = localized("searchForMovies")
+    public static let favoriteMovies       = localized("favoriteMovies")
     
     public static func localized(_ value: String) -> String {
         return NSLocalizedString(value, tableName: nil, bundle: Bundle.main, value: "", comment: "")

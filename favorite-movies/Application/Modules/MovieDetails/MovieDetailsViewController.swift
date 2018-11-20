@@ -53,8 +53,8 @@ class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
     func setNavigationBar() {
         let screenSize: CGRect = UIScreen.main.bounds
         let navBar             = UINavigationBar(frame:  CGRect(x: screenSize.origin.x, y:  UIApplication.shared.statusBarFrame.height, width: screenSize.size.width, height: 44))
-        let navItem            = UINavigationItem(title: "")
-        let back               = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: nil, action: #selector(done))
+        let navItem            = UINavigationItem(title: AppStrings.details)
+        let back               = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.undo, target: nil, action: #selector(done))
         
         navItem.leftBarButtonItem = back
         navBar.setItems([navItem], animated: false)

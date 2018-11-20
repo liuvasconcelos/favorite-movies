@@ -34,7 +34,7 @@ class MoviesSearchTableView: UITableView, UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MoviesSearchCell.IDENTIFIER, for: indexPath as IndexPath) as! MoviesSearchCell
-        cell.configureView(film: movies[indexPath.row].title)
+        cell.configureView(movie: movies[indexPath.row])
         cell.contentView.isUserInteractionEnabled = true
         return cell
     }
@@ -57,7 +57,7 @@ class MoviesSearchTableView: UITableView, UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 70
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

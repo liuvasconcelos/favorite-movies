@@ -33,13 +33,13 @@ class FavoriteMoviesTableView: UITableView, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteMoviesCell.IDENTIFIER, for: indexPath as IndexPath) as! FavoriteMoviesCell
-        cell.configureView(film: movies[indexPath.row].title)
+        cell.configureView(movie: movies[indexPath.row])
         cell.contentView.isUserInteractionEnabled = true
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 100
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
