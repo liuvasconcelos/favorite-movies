@@ -9,8 +9,9 @@
 import Foundation
 
 public struct Movie {
-    let id:         String
-    let title:      String
-    let posterPath: String
-    let overview:   String
+    let id:          String
+    let title:       String
+    let posterPath:  String
+    let overview:    String
+    let voteAverage: Float
 }

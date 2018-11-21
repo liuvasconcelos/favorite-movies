@@ -15,6 +15,7 @@ class FavoriteMoviesViewController: UIViewController, FavoriteMoviesViewContract
     @IBOutlet weak var favoriteMoviesTableView: FavoriteMoviesTableView!
     @IBOutlet weak var searchForMovieButton:    UIButton!
     @IBOutlet weak var errorOrEmptyMessage:     UILabel!
+    @IBOutlet weak var favoriteMovies: UILabel!
     
     var movies: [Movie] = []
 
@@ -31,6 +32,7 @@ class FavoriteMoviesViewController: UIViewController, FavoriteMoviesViewContract
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        favoriteMovies.text              = AppStrings.favoriteMovies
         errorOrEmptyMessage.isHidden     = true
         favoriteMoviesTableView.contract = self
         

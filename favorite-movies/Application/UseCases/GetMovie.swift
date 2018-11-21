@@ -18,8 +18,8 @@ class GetMovie {
         self.localDataSource  = localDataSource
     }
     
-    func searchMoviesBy(query: String, _ loadCallback: @escaping (BaseCallback<SearchMoviesResponse>) -> Void) {
-        remoteDataSource.searchMoviesBy(query: query, loadCallback)
+    func searchMoviesBy(query: String, page: Int, _ loadCallback: @escaping (BaseCallback<SearchMoviesResponse>) -> Void) {
+        remoteDataSource.searchMoviesBy(query: query, page: page, loadCallback)
     }
     
     func loadTrailerFromMovieWith(id : Int, _ loadCallback: @escaping (BaseCallback<BaseTrailer>) -> Void) {
@@ -28,6 +28,10 @@ class GetMovie {
     
     func loadAllFavoriteMovies() -> [Movie]{
         return localDataSource.allMovies()
+    }
+    
+    func loadTopRated(page: Int, _ loadCallback: @escaping (BaseCallback<SearchMoviesResponse>) -> Void) {
+        remoteDataSource.loadTopRated(page: page, loadCallback)
     }
 
 }

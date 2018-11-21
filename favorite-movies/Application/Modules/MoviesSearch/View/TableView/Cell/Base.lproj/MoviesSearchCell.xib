@@ -12,27 +12,38 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="YuR-rb-FeI" customClass="MoviesSearchCell" customModule="favorite_movies" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YuR-rb-FeI" id="ZeE-DJ-054">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="49.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Film Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehl-Fv-fYE">
-                        <rect key="frame" x="10" y="0.0" width="355" height="49.5"/>
+                        <rect key="frame" x="30" y="0.0" width="335" height="49"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Film Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ob1-bx-42H">
+                        <rect key="frame" x="30" y="49" width="335" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ehl-Fv-fYE" firstAttribute="top" secondItem="ZeE-DJ-054" secondAttribute="top" id="Kao-nz-htQ"/>
-                    <constraint firstAttribute="bottom" secondItem="ehl-Fv-fYE" secondAttribute="bottom" id="OH5-VP-NAs"/>
-                    <constraint firstItem="ehl-Fv-fYE" firstAttribute="leading" secondItem="ZeE-DJ-054" secondAttribute="leading" constant="10" id="OjZ-Uz-Lrw"/>
-                    <constraint firstAttribute="trailing" secondItem="ehl-Fv-fYE" secondAttribute="trailing" constant="10" id="zVo-lz-WdQ"/>
+                    <constraint firstItem="Ob1-bx-42H" firstAttribute="top" secondItem="ehl-Fv-fYE" secondAttribute="bottom" id="9WY-xy-3vG"/>
+                    <constraint firstItem="ehl-Fv-fYE" firstAttribute="top" secondItem="ZeE-DJ-054" secondAttribute="top" id="Nfc-nv-XNH"/>
+                    <constraint firstItem="ehl-Fv-fYE" firstAttribute="leading" secondItem="ZeE-DJ-054" secondAttribute="leading" constant="30" id="UWP-rp-d8t"/>
+                    <constraint firstItem="Ob1-bx-42H" firstAttribute="top" secondItem="ehl-Fv-fYE" secondAttribute="bottom" id="UjT-Tq-jtZ"/>
+                    <constraint firstAttribute="bottom" secondItem="Ob1-bx-42H" secondAttribute="bottom" id="VWt-he-Hps"/>
+                    <constraint firstAttribute="trailing" secondItem="ehl-Fv-fYE" secondAttribute="trailing" constant="10" id="XXk-gy-GAX"/>
+                    <constraint firstItem="Ob1-bx-42H" firstAttribute="leading" secondItem="ZeE-DJ-054" secondAttribute="leading" constant="30" id="eWQ-ht-vze"/>
+                    <constraint firstAttribute="trailing" secondItem="Ob1-bx-42H" secondAttribute="trailing" constant="10" id="sYO-Rz-VqD"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="filmRate" destination="Ob1-bx-42H" id="lWU-Gk-BFV"/>
                 <outlet property="filmTitleLabel" destination="ehl-Fv-fYE" id="IkX-vU-EjB"/>
             </connections>
             <point key="canvasLocation" x="-311.19999999999999" y="49.475262368815599"/>

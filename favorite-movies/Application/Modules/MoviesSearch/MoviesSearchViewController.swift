@@ -13,8 +13,17 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
     
     @IBOutlet weak var moviesSearchTableView: MoviesSearchTableView!
     @IBOutlet weak var searchTextField:       UITextField!
-    @IBOutlet weak var buttonLabel:           UIButton!
     @IBOutlet weak var errorOrEmptyMessage:   UILabel!
+    
+    @IBOutlet weak var topRatedLabel: UILabel!
+    @IBOutlet weak var cancelButton: UIButton!
+    
+    
+    var loader: UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    var movies: [Movie]       = []
+    var topRated: Bool        = true
+    var currentSearch: String = ""
     
     lazy var presenter: MoviesSearchPresenterContract = {
         return MoviesSearchPresenter(view: self,
@@ -29,18 +38,44 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setErrorOrEmpty(message: AppStrings.searchMovieMessage)
-        
-        buttonLabel.setTitle(AppStrings.search, for: .normal)
         
         moviesSearchTableView.contract = self
+        topRatedLabel.text             = AppStrings.topRated
+        moviesSearchTableView.currentPage = 1
+        cancelButton.setTitle(AppStrings.cancel, for: .normal)
+        
+        if movies.isEmpty {
+            presenter.loadTopRated(page: 1)
+        } else {
+            topRatedLabel.isHidden         = true
+            errorOrEmptyMessage.isHidden   = true
+            moviesSearchTableView.isHidden = false
+            moviesSearchTableView.set(movies: self.movies)
+            moviesSearchTableView.reloadData()
+        }
+        
+        searchTextField.addTarget(self, action: #selector(textFieldDidChange), for: UIControl.Event.editingChanged)
+    }
+    
+    @objc func textFieldDidChange(textField: UITextField) {
+        let search = searchTextField.text ?? ""
+        self.movies                       = []
+        self.topRated                     = false
+        self.currentSearch                = search
+        moviesSearchTableView.currentPage = 1
+        
+        if search.isEmpty {
+            presenter.loadTopRated(page: 1)
+            self.topRated = true
+        }
+        presenter.searchMoviesBy(search, currentPage: 1)
     }
     
     func setNavigationBar() {
         let screenSize: CGRect = UIScreen.main.bounds
-        let navBar             = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 50))
-        let navItem            = UINavigationItem(title: "")
-        let back               = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: nil, action: #selector(done))
+        let navBar             = UINavigationBar(frame:  CGRect(x: screenSize.origin.x, y:  UIApplication.shared.statusBarFrame.height, width: screenSize.size.width, height: 44))
+        let navItem            = UINavigationItem(title: AppStrings.searchForMovies)
+        let back               = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.undo, target: nil, action: #selector(done))
         
         navItem.leftBarButtonItem = back
         navBar.setItems([navItem], animated: false)
@@ -51,21 +86,22 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func searchMovies(_ sender: Any) {
-        let search = searchTextField.text ?? ""
-        presenter.searchMoviesBy(search)
-    }
-    
-    func show(movies: [Movie]) {
+    func show(movies: [Movie], topRated: Bool) {
+        self.movies += movies
         if movies.isEmpty {
             self.showEmptyMessage()
             return
         }
         moviesSearchTableView.isHidden = false
         errorOrEmptyMessage.isHidden   = true
-        
-        moviesSearchTableView.set(movies: movies)
+        topRatedLabel.isHidden         = !topRated
+
+        moviesSearchTableView.set(movies: self.movies)
+        if moviesSearchTableView.currentPage < 3 {
+            moviesSearchTableView.setContentOffset(.zero, animated:true)
+        }
         moviesSearchTableView.reloadData()
+        moviesSearchTableView.currentPage += 1
     }
     
     fileprivate func showEmptyMessage() {
@@ -80,12 +116,30 @@ class MoviesSearchViewController: UIViewController, MoviesSearchViewContract {
         moviesSearchTableView.isHidden = true
         errorOrEmptyMessage.isHidden   = false
         errorOrEmptyMessage.text       = message
+        topRatedLabel.isHidden         = true
+    }
+    
+    func showLoader() {
+        loader.center           = self.moviesSearchTableView.center
+        loader.hidesWhenStopped = true
+        loader.style            = UIActivityIndicatorView.Style.gray
+        
+        view.addSubview(loader)
+        loader.startAnimating()
+    }
+    
+    func hideLoader() {
+        loader.stopAnimating()
+    }
+    
+    @IBAction func cancelSearch(_ sender: Any) {
+        searchTextField.text = ""
+        presenter.loadTopRated(page: 1)
     }
 }
 
 extension MoviesSearchViewController: MoviesSearchCellContract {
-
-    func didCellPressed(movie: Movie) {
+   func didCellPressed(movie: Movie) {
         let controller: MovieDetailsViewController = ViewUtils.loadNibNamed(MovieDetailsViewController.NIB_NAME, owner: self)!
         controller.set(movie: movie)
         self.present(controller, animated: true, completion: nil)
@@ -93,6 +147,14 @@ extension MoviesSearchViewController: MoviesSearchCellContract {
     
     func favorite(movie: Movie) {
         self.presenter.favorite(movie: movie)
+    }
+    
+    func searchForMoreMovies(currentPage: Int) {
+        if topRated {
+            self.presenter.loadTopRated(page: currentPage)
+        } else {
+            self.presenter.searchMoviesBy(self.currentSearch, currentPage: currentPage)
+        }
     }
 
 }

@@ -7,17 +7,24 @@
 */
 
 //General
-"back" = "Voltar";
+"back"   = "Voltar";
+"cancel" = "Cancelar";
 
 //Favorite Movies screen
 "lookForMoreFavorites" = "Favoritar outros filmes";
 "noFavoriteMovies"     = "Você não possui filmes favoritos.";
+"favoriteMovies"       = "Meus filmes favoritos";
 
 //Movies Search screen
-"search"             = "Procurar";
 "searchMovieMessage" = "Por favor, digite o filme que deseja buscar.";
 "noResultsMessage"   = "Sua pesquisa não trouxe resultados.";
 "errorMessage"       = "Ocorreu um erro. Por favor, tente novamente.";
+"topRated"           = "Filmes Mais Votados";
+"searchForMovies"    = "Procura de filmes";
 
 //Movie Details screen
 "noTrailerMessage" = "Este filme não possui trailer";
+"noOverview"       = "Este filme não possui sinopse";
+"average"          = "Nota: ";
+"favorite"         = "Favoritar";
+"details"          = "Detalhes";
