@@ -9,7 +9,7 @@
 import UIKit
 
 class MovieDetailsViewController: UIViewController, MovieDetailsViewContract {
-  
+
     public static let NIB_NAME = "MovieDetailsViewController"
     
     var movieChoosen: Movie?
