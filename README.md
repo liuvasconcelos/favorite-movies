@@ -2,14 +2,11 @@
 
 This code is for a challenge proposed by Claro.
 
-![Swift Version](https://img.shields.io/badge/swift-4.1-orange.svg?style=flat-square)
-
-
 ### Requirements
 
 What you need to run this project:
 
-* Xcode 9.2
+* Xcode 10.1
 * [CocoaPods - Installation Guide](https://guides.cocoapods.org/using/getting-started.html)
 
 ### Installing instructions
