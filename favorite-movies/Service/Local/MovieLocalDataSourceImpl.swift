@@ -34,7 +34,7 @@ public class MovieLocalDataSourceImpl: MovieLocalDataSource {
     public func allMovies() -> [Movie] {
         let entries = Array(realm.objects(MovieEntry.self)
             .sorted(byKeyPath: "title",
-                    ascending: false))
+                    ascending: true))
         
         return MovieConverter.entriesToEntites(entries)
     }
@@ -44,7 +44,6 @@ public class MovieLocalDataSourceImpl: MovieLocalDataSource {
         do {
             try realm.write {
                 realm.add(entry, update: true)
-                print("funcionou")
             }
         } catch {
             

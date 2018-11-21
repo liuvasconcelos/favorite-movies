@@ -13,6 +13,8 @@ target 'favorite-movies' do
   target 'favorite-moviesTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'Quick'
+    pod 'Nimble'
   end
 
   target 'favorite-moviesUITests' do
