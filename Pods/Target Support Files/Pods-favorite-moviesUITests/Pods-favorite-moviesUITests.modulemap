@@ -1,6 +1,0 @@
-framework module Pods_favorite_moviesUITests {
-  umbrella header "Pods-favorite-moviesUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
