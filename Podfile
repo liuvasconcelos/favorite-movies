@@ -6,10 +6,15 @@ target 'favorite-movies' do
   use_frameworks!
 
   # Pods for favorite-movies
+    pod 'ObjectMapper', '~> 3.4'
+    pod 'AlamofireObjectMapper', '~> 5.0'
+    pod 'RealmSwift'
 
   target 'favorite-moviesTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'Quick'
+    pod 'Nimble'
   end
 
   target 'favorite-moviesUITests' do

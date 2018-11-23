@@ -1,0 +1,32 @@
+/* 
+  Localizable.strings
+  favorite-movies
+
+  Created by Livia Vasconcelos on 15/11/18.
+  Copyright © 2018 Livia Vasconcelos. All rights reserved.
+*/
+
+//General
+"back"   = "Back";
+"cancel" = "Cancel";
+
+//Favorite Movies screen
+"lookForMoreFavorites" = "Favorite other movies";
+"noFavoriteMovies"     = "You have no favorite movies.";
+"favoriteMovies"       = "My favorite movies";
+
+//Movies Search screen
+"searchMovieMessage" = "Please type the film that you want to search.";
+"noResultsMessage"   = "Your search brought no results.";
+"errorMessage"       = "An error occured. Please try again.";
+"topRated"           = "Top Rated Movies";
+"searchForMovies"    = "Search for movies";
+
+//Movie Details screen
+"noTrailerMessage" = "This movie has no trailer.";
+"noOverview"       = "This moview has no overview";
+"average"          = "Average: ";
+"favorite"         = "Favorite";
+"details"          = "Details";
+
+
