@@ -35,6 +35,7 @@ class FavoriteMoviesTableView: UITableView, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoriteMoviesCell.IDENTIFIER, for: indexPath as IndexPath) as! FavoriteMoviesCell
         cell.configureView(movie: movies[indexPath.row])
         cell.contentView.isUserInteractionEnabled = true
+        cell.accessibilityIdentifier = "option \(indexPath.row)"
         return cell
     }
     

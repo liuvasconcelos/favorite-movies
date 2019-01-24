@@ -27,6 +27,11 @@ class FavoriteMoviesViewController: UIViewController, FavoriteMoviesViewContract
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        favoriteMoviesTableView.accessibilityIdentifier = "favoriteMoviesTableView"
+        searchForMovieButton.accessibilityIdentifier    = "searchForMovieButton"
+        errorOrEmptyMessage.accessibilityIdentifier     = "errorOrEmptyMessage"
+        favoriteMovies.accessibilityIdentifier          = "favoriteMovies"
     }
     
     override func viewWillAppear(_ animated: Bool) {

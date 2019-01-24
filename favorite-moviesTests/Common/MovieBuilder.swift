@@ -18,7 +18,7 @@ public class MovieBuilder {
         return Movie(id: id,
                      title: title,
                      posterPath: posterPath,
-                     overview: overview)
+                     overview: overview, voteAverage: 1.0)
     }
     
     public static func buildEntryWith(id: String         = "movie-id",

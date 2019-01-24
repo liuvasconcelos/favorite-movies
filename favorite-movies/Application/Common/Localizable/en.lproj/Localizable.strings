@@ -11,7 +11,7 @@
 "cancel" = "Cancel";
 
 //Favorite Movies screen
-"lookForMoreFavorites" = "Favorite other movies";
+"look.for.more.favorites" = "Favorite other movies";
 "noFavoriteMovies"     = "You have no favorite movies.";
 "favoriteMovies"       = "My favorite movies";
 

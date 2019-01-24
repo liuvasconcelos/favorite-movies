@@ -11,7 +11,7 @@
 "cancel" = "Cancelar";
 
 //Favorite Movies screen
-"lookForMoreFavorites" = "Favoritar outros filmes";
+"look.for.more.favorites" = "Favoritar outros filmes";
 "noFavoriteMovies"     = "Você não possui filmes favoritos.";
 "favoriteMovies"       = "Meus filmes favoritos";
 

@@ -13,7 +13,7 @@ public class AppStrings {
     public static let searchMovieMessage   = localized("searchMovieMessage")
     public static let noResultsMessage     = localized("noResultsMessage")
     public static let errorMessage         = localized("errorMessage")
-    public static let lookForMoreFavorites = localized("lookForMoreFavorites")
+    public static let lookForMoreFavorites = localized("look.for.more.favorites")
     public static let noFavoriteMovies     = localized("noFavoriteMovies")
     public static let noTrailerMessage     = localized("noTrailerMessage")
     public static let topRated             = localized("topRated")
@@ -27,6 +27,12 @@ public class AppStrings {
     
     public static func localized(_ value: String) -> String {
         return NSLocalizedString(value, tableName: nil, bundle: Bundle.main, value: "", comment: "")
+    }
+}
+
+enum Strings {
+    static func lookForMoreFavorites(_ bundle: Bundle = Bundle.main) -> String {
+        return NSLocalizedString("look.for.more.favorites", bundle:bundle, comment: "")
     }
 }
 
