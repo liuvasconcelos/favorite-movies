@@ -24,6 +24,7 @@
                     </tableView>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WSb-2T-ecy">
                         <rect key="frame" x="10" y="82" width="277" height="30"/>
+                        <accessibility key="accessibilityConfiguration" identifier="searchEditText"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="277" id="ZOW-zi-hEJ"/>
                         </constraints>
@@ -33,6 +34,7 @@
                     </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hnx-cj-hXB">
                         <rect key="frame" x="30" y="215" width="329" height="21"/>
+                        <accessibility key="accessibilityConfiguration" identifier="errorOfEmptySearchLabel"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.92150574919999995" green="0.91377633810000003" blue="0.90980386729999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
@@ -45,6 +47,7 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lzx-Hb-CrQ">
                         <rect key="frame" x="295" y="82" width="64" height="30"/>
+                        <accessibility key="accessibilityConfiguration" identifier="cancelButton"/>
                         <state key="normal" title="Cancelar">
                             <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>

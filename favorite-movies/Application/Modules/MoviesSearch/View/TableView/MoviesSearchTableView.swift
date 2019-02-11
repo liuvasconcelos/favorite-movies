@@ -26,6 +26,8 @@ class MoviesSearchTableView: UITableView, UITableViewDataSource, UITableViewDele
         
         let cell = UINib(nibName: MoviesSearchCell.NIB_NAME, bundle: nil)
         self.register(cell, forCellReuseIdentifier: MoviesSearchCell.IDENTIFIER)
+        
+        self.accessibilityIdentifier = "searchTableView"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -36,6 +38,7 @@ class MoviesSearchTableView: UITableView, UITableViewDataSource, UITableViewDele
         let cell = tableView.dequeueReusableCell(withIdentifier: MoviesSearchCell.IDENTIFIER, for: indexPath as IndexPath) as! MoviesSearchCell
         cell.configureView(movie: movies[indexPath.row])
         cell.contentView.isUserInteractionEnabled = true
+        cell.accessibilityIdentifier = "cell\(indexPath.row)"
         return cell
     }
     
